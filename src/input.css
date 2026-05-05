@@ -1,0 +1,22 @@
+@import "@fontsource-variable/stack-sans-notch/wght.css";
+@import "@fontsource-variable/ibm-plex-sans/wdth-italic.css";
+@import "tailwindcss";
+
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-group(*) {
+    animation-duration: 0.3s;
+}
+
+@theme {
+    --color-primary: #1c4ae5;
+    --color-secondary: #010a29;
+    --color-background: #fdf6e6;
+    --color-accent: #01d46b;
+    --color-muted: #999da9;
+    --color-wrong: #d30248;
+    --font-stack-sans-notch: "Stack Sans Notch", sans-serif;
+    --font-ibm-plex-sans: "IBM Plex Sans", sans-serif;
+}

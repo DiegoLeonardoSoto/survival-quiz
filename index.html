@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Survival Quiz</title>
+        <link rel="stylesheet" href="./src/output.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Stack+Sans+Notch:wght@200..700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="bg-background bg-grid min-h-screen overflow-hidden">
+        <main
+            class="font-agdasima relative w-full max-w-lg mx-auto min-h-screen flex flex-col items-center justify-center px-4"
+        >
+            <div
+                class="absolute top-0 right-0 w-full h-full bg-[linear-gradient(to_right,#010a29_1px,transparent_1px),linear-gradient(to_bottom,#010a29_1px,transparent_1px)] bg-size-[70px_70px] mask-linear-0 mask-linear-from-30% mask-linear-to-60% -z-10"
+            ></div>
+            <!-- START SCREEN -->
+            <h1
+                id="title"
+                class="font-stack-sans-notch text-accent text-5xl font-bold"
+                style="view-transition-name: title"
+            >
+                Survival Quiz
+            </h1>
+
+            <section
+                id="screen-start"
+                class="flex flex-col items-center gap-6 text-center"
+            >
+                <p class="text-2xl">Respondé. Sobreviví. No falles.</p>
+                <a
+                    id="btn-start"
+                    href="./game.html"
+                    class="bg-primary px-8 py-3 text-white text-2xl rounded-lg cursor-pointer flex items-center gap-3"
+                >
+                    COMENZAR
+
+                    <svg class="w-6 h-6 text-white fill-current">
+                        <use href="assets/sprites.svg#icon-play"></use>
+                    </svg>
+                </a>
+            </section>
+        </main>
+
+        <script src="./js/main.js" type="module"></script>
+    </body>
+</html>

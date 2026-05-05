@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Survival Quiz</title>
+        <link rel="stylesheet" href="./src/output.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&family=Stack+Sans+Notch:wght@200..700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body class="bg-background bg-grid min-h-screen overflow-hidden">
+        <main
+            class="font-agdasima relative w-full max-w-lg mx-auto min-h-screen flex flex-col items-center justify-center"
+        >
+            <div
+                class="absolute top-0 right-0 w-full h-full bg-[linear-gradient(to_right,#010a29_1px,transparent_1px),linear-gradient(to_bottom,#010a29_1px,transparent_1px)] bg-size-[70px_70px] mask-linear-0 mask-linear-from-30% mask-linear-to-60% -z-10"
+            ></div>
+
+            <h1
+                id="title"
+                class="font-stack-sans-notch text-accent text-5xl font-bold"
+                style="view-transition-name: title"
+            >
+                Survival Quiz
+            </h1>
+
+            <!-- GAME SCREEN -->
+            <section
+                id="screen-game"
+                class="flex flex-col w-full h-full justify-center items-center"
+            >
+                <span
+                    id="timer"
+                    class="text-7xl mt-4 mb-6 font-bold text-center"
+                    >00:00:00</span
+                >
+
+                <p
+                    id="question"
+                    class="bg-secondary text-2xl text-white flex text-center py-8 px-8"
+                ></p>
+
+                <div id="answers" class="flex flex-col w-full px-8 gap-4 mt-12">
+                    <button
+                        id="btn-answer-1"
+                        class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer"
+                    >
+                        476 d.C.
+                    </button>
+                    <button
+                        id="btn-answer-2"
+                        class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer"
+                    >
+                        410 d.C.
+                    </button>
+                    <button
+                        id="btn-answer-3"
+                        class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer"
+                    >
+                        395 d.C.
+                    </button>
+                    <button
+                        id="btn-answer-4"
+                        class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer"
+                    >
+                        509 d.C.
+                    </button>
+                </div>
+
+                <button
+                    id="btn-play"
+                    class="bg-primary w-16 flex items-center justify-center rounded-md p-4 mt-2 cursor-pointer"
+                >
+                    <svg class="w-6 h-6 text-white fill-current">
+                        <use href="../assets/sprites.svg#icon-play"></use>
+                    </svg>
+                </button>
+                <a class="bg-accent p-3 text-3xl" href="./game-over.html"
+                    >game over</a
+                >
+            </section>
+        </main>
+
+        <script src="../js/game.js" type="module"></script>
+    </body>
+</html>
