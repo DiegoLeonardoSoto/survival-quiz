@@ -1,4 +1,4 @@
-export const timerControler = (timerElement, initTime) => {
+export const timerControler = (initTime) => {
   let currentTime = initTime;
   let intervalId;
   let isRunning = false;
@@ -11,16 +11,13 @@ export const timerControler = (timerElement, initTime) => {
     return `${min.padStart(2, "0")}:${sec.padStart(2, "0")}:${ms.padStart(2, "0")}`;
   };
 
-  const initialFormatedTime = formatTime(initTime);
-
-  function startTimer() {
+  function startTimer(timerElement = null) {
     isRunning = true;
     intervalId = setInterval(() => {
-      reduceTime(10);
-      timerElement.textContent = formatTime(currentTime);
+      initTime === 0 ? addTime(10) : reduceTime(10);
+      if (timerElement) timerElement.textContent = getFormatedTime(currentTime);
       if (currentTime === 0) {
-        clearInterval(intervalId);
-        isRunning = false;
+        stopTimer();
       }
     }, 10);
   }
@@ -37,11 +34,28 @@ export const timerControler = (timerElement, initTime) => {
     }
   }
 
+  function stopTimer() {
+    if (isRunning) {
+      window.dispatchEvent(
+        new CustomEvent("timerStop", {
+          detail: { currentTime },
+        }),
+      );
+      clearInterval(intervalId);
+      isRunning = false;
+    }
+  }
+
+  function getFormatedTime(time = currentTime) {
+    return formatTime(time);
+  }
+
   return {
     startTimer,
     isRunning,
     addTime,
     reduceTime,
-    initialFormatedTime,
+    stopTimer,
+    getFormatedTime,
   };
 };

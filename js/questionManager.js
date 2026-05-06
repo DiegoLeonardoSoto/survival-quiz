@@ -7,14 +7,12 @@ export const questionManager = async () => {
   };
 
   async function getQuestions() {
-    return await fetch("../js/questions.json")
+    return await fetch("../data/questions.json")
       .then((response) => response.json())
       .then((data) => data);
   }
 
   let questions = await getQuestions();
-
-  console.log(questions);
 
   const getNewRandomQuestion = () => {
     const randomIndex = Math.floor(Math.random() * questions.length);
@@ -31,28 +29,20 @@ export const questionManager = async () => {
   getNewRandomQuestion();
 
   function shuffle(correctAnswer, incorrectAnswers) {
-    //TODO: logica del shuffle
-    return [correctAnswer, ...incorrectAnswers];
+    let options = [...incorrectAnswers];
+    const randomIndex = Math.floor(Math.random() * (options.length + 1));
+    options.splice(randomIndex, 0, correctAnswer);
+
+    return options;
   }
 
-  const validateAnswer = async (answer) => {
-    if (questions.length < 10) {
-      questions = [...questions, ...(await getQuestions())];
-    }
-
-    --currentQuestion.tries;
-
-    let isCorrect = answer === currentQuestion.correctAnswer;
-
-    if (isCorrect || currentQuestion.tries < 0) {
-      getNewRandomQuestion();
-    }
-
-    return isCorrect;
+  const validateAnswer = (answer) => {
+    return answer === currentQuestion.correctAnswer;
   };
 
   return {
     currentQuestion,
     validateAnswer,
+    getNewRandomQuestion,
   };
 };

@@ -1,0 +1,402 @@
+[
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Historia",
+    "question": "¿En qué año cayó el Imperio Romano de Occidente?",
+    "correct_answer": "476 d.C.",
+    "incorrect_answers": ["410 d.C.", "395 d.C.", "509 d.C."]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es el elemento químico más abundante en el universo?",
+    "correct_answer": "Hidrógeno",
+    "incorrect_answers": ["Helio", "Oxígeno", "Carbono"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es el río más largo del mundo?",
+    "correct_answer": "Amazonas",
+    "incorrect_answers": ["Nilo", "Yangtsé", "Misisipi"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Arte",
+    "question": "¿Quién pintó 'La noche estrellada'?",
+    "correct_answer": "Vincent van Gogh",
+    "incorrect_answers": ["Pablo Picasso", "Claude Monet", "Salvador Dalí"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Deportes",
+    "question": "¿Cuántos jugadores tiene un equipo de fútbol en cancha?",
+    "correct_answer": "11",
+    "incorrect_answers": ["10", "9", "12"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Qué planeta del sistema solar tiene la rotación más rápida?",
+    "correct_answer": "Júpiter",
+    "incorrect_answers": ["Saturno", "Neptuno", "Urano"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿En qué año comenzó la Revolución Francesa?",
+    "correct_answer": "1789",
+    "incorrect_answers": ["1776", "1799", "1804"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entretenimiento",
+    "question": "¿Cómo se llama el personaje principal de 'Breaking Bad'?",
+    "correct_answer": "Walter White",
+    "incorrect_answers": ["Jesse Pinkman", "Gus Fring", "Saul Goodman"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Australia?",
+    "correct_answer": "Canberra",
+    "incorrect_answers": ["Sídney", "Melbourne", "Brisbane"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Cuál es la velocidad de la luz en el vacío (km/s aproximadamente)?",
+    "correct_answer": "300.000",
+    "incorrect_answers": ["150.000", "450.000", "1.000.000"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Historia",
+    "question": "¿En qué año terminó la Segunda Guerra Mundial?",
+    "correct_answer": "1945",
+    "incorrect_answers": ["1944", "1946", "1943"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es el hueso más largo del cuerpo humano?",
+    "correct_answer": "Fémur",
+    "incorrect_answers": ["Tibia", "Húmero", "Peroné"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es el país más grande del mundo por superficie?",
+    "correct_answer": "Rusia",
+    "incorrect_answers": ["China", "Canadá", "Estados Unidos"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿Quién fue el primer presidente de Estados Unidos?",
+    "correct_answer": "George Washington",
+    "incorrect_answers": ["Thomas Jefferson", "Abraham Lincoln", "Benjamin Franklin"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Cuántos corazones tiene un pulpo?",
+    "correct_answer": "3",
+    "incorrect_answers": ["1", "2", "4"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geografía",
+    "question": "¿En qué océano se encuentra la Fosa de las Marianas?",
+    "correct_answer": "Océano Pacífico",
+    "incorrect_answers": ["Océano Atlántico", "Océano Índico", "Océano Ártico"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entretenimiento",
+    "question": "¿Quién dirigió la película 'Titanic'?",
+    "correct_answer": "James Cameron",
+    "incorrect_answers": ["Steven Spielberg", "Christopher Nolan", "Ridley Scott"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Deportes",
+    "question": "¿Cada cuántos años se celebran los Juegos Olímpicos de verano?",
+    "correct_answer": "4",
+    "incorrect_answers": ["2", "6", "5"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Historia",
+    "question": "¿Qué civilización construyó Machu Picchu?",
+    "correct_answer": "Inca",
+    "incorrect_answers": ["Maya", "Azteca", "Olmeca"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Ciencia",
+    "question": "¿Qué gas absorben las plantas durante la fotosíntesis?",
+    "correct_answer": "Dióxido de carbono",
+    "incorrect_answers": ["Oxígeno", "Nitrógeno", "Hidrógeno"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Literatura",
+    "question": "¿Quién escribió 'Cien años de soledad'?",
+    "correct_answer": "Gabriel García Márquez",
+    "incorrect_answers": ["Mario Vargas Llosa", "Julio Cortázar", "Pablo Neruda"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Música",
+    "question": "¿Qué banda lanzó 'Bohemian Rhapsody'?",
+    "correct_answer": "Queen",
+    "incorrect_answers": ["The Beatles", "Led Zeppelin", "Pink Floyd"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Geografía",
+    "question": "¿Cuál es la montaña más alta del mundo?",
+    "correct_answer": "Monte Everest",
+    "incorrect_answers": ["K2", "Kilimanjaro", "Mont Blanc"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Tecnología",
+    "question": "¿En qué año se fundó Google?",
+    "correct_answer": "1998",
+    "incorrect_answers": ["1995", "2000", "2003"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Historia",
+    "question": "¿En qué año llegó el ser humano a la Luna?",
+    "correct_answer": "1969",
+    "incorrect_answers": ["1967", "1971", "1965"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es la fórmula química del agua?",
+    "correct_answer": "H₂O",
+    "incorrect_answers": ["CO₂", "NaCl", "O₂"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Deportes",
+    "question": "¿Cuántos anillos tiene la bandera olímpica?",
+    "correct_answer": "5",
+    "incorrect_answers": ["4", "6", "3"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Entretenimiento",
+    "question": "¿En qué año se estrenó la primera película de Harry Potter?",
+    "correct_answer": "2001",
+    "incorrect_answers": ["1999", "2003", "2005"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geografía",
+    "question": "¿En qué país se encuentra el desierto de Atacama?",
+    "correct_answer": "Chile",
+    "incorrect_answers": ["Perú", "Bolivia", "Argentina"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Arte",
+    "question": "¿Quién esculpió la estatua del 'David'?",
+    "correct_answer": "Miguel Ángel",
+    "incorrect_answers": ["Leonardo da Vinci", "Donatello", "Rafael"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Música",
+    "question": "¿Cuántas teclas tiene un piano estándar?",
+    "correct_answer": "88",
+    "incorrect_answers": ["76", "104", "64"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Tecnología",
+    "question": "¿Qué significan las siglas 'HTML'?",
+    "correct_answer": "HyperText Markup Language",
+    "incorrect_answers": ["High Tech Modern Language", "Hyper Transfer Module Link", "Home Tool Markup Logic"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Qué órgano del cuerpo produce la insulina?",
+    "correct_answer": "Páncreas",
+    "incorrect_answers": ["Hígado", "Riñón", "Bazo"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿Qué tratado puso fin a la Primera Guerra Mundial?",
+    "correct_answer": "Tratado de Versalles",
+    "incorrect_answers": ["Tratado de París", "Tratado de Viena", "Tratado de Ginebra"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Japón?",
+    "correct_answer": "Tokio",
+    "incorrect_answers": ["Osaka", "Kioto", "Yokohama"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Entretenimiento",
+    "question": "¿Quién creó la saga 'Star Wars'?",
+    "correct_answer": "George Lucas",
+    "incorrect_answers": ["Steven Spielberg", "J.J. Abrams", "Ridley Scott"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Deportes",
+    "question": "¿En qué país se inventó el fútbol moderno?",
+    "correct_answer": "Inglaterra",
+    "incorrect_answers": ["Brasil", "Italia", "España"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Arte",
+    "question": "¿Qué movimiento artístico lideró Salvador Dalí?",
+    "correct_answer": "Surrealismo",
+    "incorrect_answers": ["Cubismo", "Impresionismo", "Expresionismo"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuántos huesos tiene aproximadamente el cuerpo humano adulto?",
+    "correct_answer": "206",
+    "incorrect_answers": ["186", "226", "256"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Música",
+    "question": "¿Quién es conocido como el 'Rey del Pop'?",
+    "correct_answer": "Michael Jackson",
+    "incorrect_answers": ["Prince", "Elvis Presley", "Stevie Wonder"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿En qué año cayó el Muro de Berlín?",
+    "correct_answer": "1989",
+    "incorrect_answers": ["1987", "1991", "1985"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Geografía",
+    "question": "¿Cuál es el país más poblado de África?",
+    "correct_answer": "Nigeria",
+    "incorrect_answers": ["Egipto", "Etiopía", "Sudáfrica"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Tecnología",
+    "question": "¿Quién cofundó Microsoft junto a Paul Allen?",
+    "correct_answer": "Bill Gates",
+    "incorrect_answers": ["Steve Jobs", "Mark Zuckerberg", "Jeff Bezos"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Entretenimiento",
+    "question": "¿Cuál es la serie animada más longeva de la televisión estadounidense?",
+    "correct_answer": "Los Simpson",
+    "incorrect_answers": ["South Park", "Padre de Familia", "Bob Esponja"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Qué vitamina produce el cuerpo humano al exponerse al sol?",
+    "correct_answer": "Vitamina D",
+    "incorrect_answers": ["Vitamina C", "Vitamina A", "Vitamina B12"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Deportes",
+    "question": "¿Qué país ganó el primer Mundial de Fútbol en 1930?",
+    "correct_answer": "Uruguay",
+    "incorrect_answers": ["Brasil", "Argentina", "Italia"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Literatura",
+    "question": "¿Quién escribió 'Don Quijote de la Mancha'?",
+    "correct_answer": "Miguel de Cervantes",
+    "incorrect_answers": ["Lope de Vega", "Francisco de Quevedo", "Calderón de la Barca"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Música",
+    "question": "¿En qué país se originó el reggae?",
+    "correct_answer": "Jamaica",
+    "incorrect_answers": ["Brasil", "Cuba", "Puerto Rico"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Tecnología",
+    "question": "¿Cuál fue el primer navegador web con interfaz gráfica?",
+    "correct_answer": "Mosaic",
+    "incorrect_answers": ["Netscape Navigator", "Internet Explorer", "Opera"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Ciencia",
+    "question": "¿Cuál es el órgano más grande del cuerpo humano?",
+    "correct_answer": "La piel",
+    "incorrect_answers": ["El hígado", "El cerebro", "Los pulmones"]
+  }
+]
