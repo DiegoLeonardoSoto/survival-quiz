@@ -23,6 +23,8 @@ const setupGame = () => {
 
   const timerDomManager = domManager("timer");
   const questionDOMManager = domManager("question");
+  const correctGradientDomManager = domManager("correctGradient");
+  const wrongGradientDomManager = domManager("wrongGradient");
   answersDOMManager = domManager("answers");
 
   timer.resetTimer();
@@ -59,11 +61,19 @@ const setupGame = () => {
         gameStats.streak,
       );
       timer.addTime(5000);
+      correctGradientDomManager.toggleClass("hidden");
+      setTimeout(() => {
+        correctGradientDomManager.toggleClass("hidden");
+      }, 250);
     } else {
       timer.reduceTime(5000);
       e.target.disabled = true;
       gameStats.streak = 0;
       console.log(e.target);
+      wrongGradientDomManager.toggleClass("hidden");
+      setTimeout(() => {
+        wrongGradientDomManager.toggleClass("hidden");
+      }, 250);
     }
 
     if (isCorrect || currentQuestion.tries === 0) {

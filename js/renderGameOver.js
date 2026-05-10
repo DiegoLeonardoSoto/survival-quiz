@@ -127,10 +127,7 @@ function renderNewGame() {
       <svg class="w-6 h-6 text-white fill-current">
           <use href="../assets/sprites.svg#icon-play"></use>
       </svg>
-  </button>
-  <a class="bg-accent p-3 text-3xl" href="./game-over.html"
-      >game over</a
-  >`;
+  </button>`;
 
   window.dispatchEvent(new CustomEvent("retryGame"));
 }
