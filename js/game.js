@@ -9,8 +9,10 @@ const { currentQuestion, validateAnswer, getNewRandomQuestion } =
 let gameStats = {};
 let timerDomManager = null;
 let answersDOMManager = null;
+let streakDomManager = null;
+
 let btnPlay = document.querySelector("#btn-play");
-const timer = countDownTimerController(5000);
+const timer = countDownTimerController(10000);
 const progressTimer = progressTimerController();
 
 const setupGame = () => {
@@ -23,6 +25,7 @@ const setupGame = () => {
   };
 
   timerDomManager = document.querySelector("#timer");
+  streakDomManager = document.querySelector("#streak");
   const questionDOMManager = document.querySelector("#question");
   const correctGradientDomManager = document.querySelector("#correctGradient");
   const wrongGradientDomManager = document.querySelector("#wrongGradient");
@@ -46,7 +49,8 @@ const setupGame = () => {
   renderQuestion();
 
   answersDOMManager.addEventListener("click", (e) => {
-    e.preventDefault();
+    if (e.target.tagName !== "BUTTON") return;
+
     let isCorrect = validateAnswer(e.target.textContent);
     currentQuestion.tries -= 1;
 
@@ -79,6 +83,8 @@ const setupGame = () => {
       gameStats.totalQuestions += 1;
       renderQuestion();
     }
+
+    streakDomManager.textContent = `x${gameStats.streak}`;
   });
 };
 
