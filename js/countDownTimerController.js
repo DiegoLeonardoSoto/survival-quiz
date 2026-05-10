@@ -1,22 +1,18 @@
-export const timerControler = (initTime) => {
+import { formatTime } from "./utilities.js";
+export const countDownTimerController = (initTime) => {
   let currentTime = initTime;
   let intervalId;
   let isRunning = false;
 
-  const formatTime = (milisecondsInput) => {
-    let min = (~~(milisecondsInput / 60000)).toString();
-    let sec = (~~((milisecondsInput % 60000) / 1000)).toString();
-    let ms = (~~((milisecondsInput % 1000) / 10)).toString();
-
-    return `${min.padStart(2, "0")}:${sec.padStart(2, "0")}:${ms.padStart(2, "0")}`;
-  };
-
   function startTimer(timerElement = null) {
+    if (isRunning) return;
+
     isRunning = true;
     intervalId = setInterval(() => {
-      initTime === 0 ? addTime(10) : reduceTime(10);
+      console.log("this is from", intervalId);
+      reduceTime(10);
       if (timerElement) timerElement.textContent = getFormatedTime(currentTime);
-      if (currentTime === 0) {
+      if (currentTime <= 0) {
         stopTimer();
       }
     }, 10);
@@ -36,15 +32,14 @@ export const timerControler = (initTime) => {
 
   function stopTimer() {
     if (isRunning) {
-      if (initTime > 0) {
-        window.dispatchEvent(
-          new CustomEvent("timerStop", {
-            detail: { currentTime },
-          }),
-        );
-      }
       clearInterval(intervalId);
       isRunning = false;
+
+      window.dispatchEvent(
+        new CustomEvent("timerStop", {
+          detail: { currentTime },
+        }),
+      );
     }
   }
 
@@ -53,8 +48,8 @@ export const timerControler = (initTime) => {
   }
 
   function resetTimer() {
-    stopTimer();
     currentTime = initTime;
+    stopTimer();
   }
 
   return {

@@ -1,16 +1,17 @@
-import { timerControler } from "./timerController.js";
 import { questionManager } from "./questionManager.js";
-import { domManager } from "./domManager.js";
 import { renderGameOver } from "./renderGameOver.js";
-
-const progressTimer = timerControler(0);
+import { progressTimerController } from "./progressTimerController.js";
+import { countDownTimerController } from "./countDownTimerController.js";
 
 const { currentQuestion, validateAnswer, getNewRandomQuestion } =
   await questionManager();
 
 let gameStats = {};
+let timerDomManager = null;
 let answersDOMManager = null;
-const timer = timerControler(60000);
+let btnPlay = document.querySelector("#btn-play");
+const timer = countDownTimerController(5000);
+const progressTimer = progressTimerController();
 
 const setupGame = () => {
   gameStats = {
@@ -21,34 +22,30 @@ const setupGame = () => {
     survivalTime: "",
   };
 
-  const timerDomManager = domManager("timer");
-  const questionDOMManager = domManager("question");
-  const correctGradientDomManager = domManager("correctGradient");
-  const wrongGradientDomManager = domManager("wrongGradient");
-  answersDOMManager = domManager("answers");
+  timerDomManager = document.querySelector("#timer");
+  const questionDOMManager = document.querySelector("#question");
+  const correctGradientDomManager = document.querySelector("#correctGradient");
+  const wrongGradientDomManager = document.querySelector("#wrongGradient");
+  answersDOMManager = document.querySelector("#answers");
 
   timer.resetTimer();
 
-  timerDomManager.changeText(timer.getFormatedTime());
+  timerDomManager.textContent = timer.getFormatedTime();
 
-  const btnPlay = document.getElementById("btn-play");
+  if (btnPlay.classList.contains("hidden")) {
+    btnPlay.classList.toggle("hidden");
+  }
 
   const renderQuestion = () => {
-    questionDOMManager.changeText(currentQuestion.questionText);
+    questionDOMManager.textContent = currentQuestion.questionText;
     currentQuestion.options.forEach((option, i) => {
-      answersDOMManager.element.children[i].textContent = option;
+      answersDOMManager.children[i].textContent = option;
     });
   };
 
   renderQuestion();
 
-  btnPlay.addEventListener("click", () => {
-    timer.startTimer(timerDomManager.element);
-    progressTimer.startTimer();
-    enabledButtons();
-  });
-
-  answersDOMManager.element.addEventListener("click", (e) => {
+  answersDOMManager.addEventListener("click", (e) => {
     e.preventDefault();
     let isCorrect = validateAnswer(e.target.textContent);
     currentQuestion.tries -= 1;
@@ -61,18 +58,18 @@ const setupGame = () => {
         gameStats.streak,
       );
       timer.addTime(5000);
-      correctGradientDomManager.toggleClass("hidden");
+      correctGradientDomManager.classList.toggle("hidden");
       setTimeout(() => {
-        correctGradientDomManager.toggleClass("hidden");
+        correctGradientDomManager.classList.toggle("hidden");
       }, 250);
     } else {
       timer.reduceTime(5000);
       e.target.disabled = true;
       gameStats.streak = 0;
       console.log(e.target);
-      wrongGradientDomManager.toggleClass("hidden");
+      wrongGradientDomManager.classList.toggle("hidden");
       setTimeout(() => {
-        wrongGradientDomManager.toggleClass("hidden");
+        wrongGradientDomManager.classList.toggle("hidden");
       }, 250);
     }
 
@@ -87,14 +84,20 @@ const setupGame = () => {
 
 setupGame();
 
+btnPlay.addEventListener("click", () => {
+  timer.startTimer(timerDomManager);
+  progressTimer.startTimer();
+  enabledButtons();
+});
+
 const enabledButtons = () => {
-  answersDOMManager.element.querySelectorAll("button").forEach((btn) => {
+  answersDOMManager.querySelectorAll("button").forEach((btn) => {
     btn.disabled = false;
   });
 };
 
 const disabledButtons = () => {
-  answersDOMManager.element.querySelectorAll("button").forEach((btn) => {
+  answersDOMManager.querySelectorAll("button").forEach((btn) => {
     btn.disabled = true;
   });
 };
@@ -103,6 +106,7 @@ window.addEventListener("timerStop", (e) => {
   gameStats.survivalTime = progressTimer.getFormatedTime();
   progressTimer.resetTimer();
   disabledButtons();
+  btnPlay.classList.toggle("hidden");
   renderGameOver(gameStats);
 });
 

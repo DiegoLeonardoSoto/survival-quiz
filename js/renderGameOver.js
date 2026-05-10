@@ -1,5 +1,4 @@
-import { domManager } from "./domManager.js";
-const screenGameDomManager = domManager("screen-game");
+const screenGameDomManager = document.querySelector("#screen-game");
 
 export function renderGameOver(gameStats) {
   document
@@ -16,7 +15,7 @@ export function renderGameOver(gameStats) {
       "mask-linear-to-25%",
     );
 
-  screenGameDomManager.element.innerHTML = `
+  screenGameDomManager.innerHTML = `
     <svg class="w-16 h-16 text-secondary fill-current my-5">
       <use href="assets/sprites.svg#icon-document"></use>
   </svg>
@@ -78,7 +77,7 @@ function renderNewGame() {
       "mask-linear-to-60%",
     );
 
-  screenGameDomManager.element.innerHTML = `                <span
+  screenGameDomManager.innerHTML = `                <span
       id="timer"
       class="text-7xl mt-4 mb-6 font-bold text-center"
       >00:00:00</span
@@ -118,16 +117,7 @@ function renderNewGame() {
       >
           509 d.C.
       </button>
-  </div>
-
-  <button
-      id="btn-play"
-      class="bg-primary w-16 flex items-center justify-center rounded-md p-4 mt-2 cursor-pointer"
-  >
-      <svg class="w-6 h-6 text-white fill-current">
-          <use href="../assets/sprites.svg#icon-play"></use>
-      </svg>
-  </button>`;
+  </div>`;
 
   window.dispatchEvent(new CustomEvent("retryGame"));
 }
