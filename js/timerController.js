@@ -36,11 +36,13 @@ export const timerControler = (initTime) => {
 
   function stopTimer() {
     if (isRunning) {
-      window.dispatchEvent(
-        new CustomEvent("timerStop", {
-          detail: { currentTime },
-        }),
-      );
+      if (initTime > 0) {
+        window.dispatchEvent(
+          new CustomEvent("timerStop", {
+            detail: { currentTime },
+          }),
+        );
+      }
       clearInterval(intervalId);
       isRunning = false;
     }
@@ -50,6 +52,11 @@ export const timerControler = (initTime) => {
     return formatTime(time);
   }
 
+  function resetTimer() {
+    stopTimer();
+    currentTime = initTime;
+  }
+
   return {
     startTimer,
     isRunning,
@@ -57,5 +64,6 @@ export const timerControler = (initTime) => {
     reduceTime,
     stopTimer,
     getFormatedTime,
+    resetTimer,
   };
 };
