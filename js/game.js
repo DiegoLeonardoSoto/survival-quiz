@@ -3,16 +3,24 @@ import { renderGameOver } from "./renderGameOver.js";
 import { progressTimerController } from "./progressTimerController.js";
 import { countDownTimerController } from "./countDownTimerController.js";
 
-const { currentQuestion, validateAnswer, getNewRandomQuestion } =
-  await questionManager();
+const {
+  getQuestionText,
+  getQuestionOptions,
+  getTries,
+  decrementTries,
+  validateAnswer,
+  loadQuestion,
+} = await questionManager();
 
 let gameStats = {};
 let timerDomManager = null;
 let answersDOMManager = null;
 let streakDomManager = null;
+let correctGradientDomManager = null;
+let wrongGradientDomManager = null;
 
 let btnPlay = document.querySelector("#btn-play");
-const timer = countDownTimerController(10000);
+const timer = countDownTimerController(60000);
 const progressTimer = progressTimerController();
 
 const setupGame = () => {
@@ -27,8 +35,8 @@ const setupGame = () => {
   timerDomManager = document.querySelector("#timer");
   streakDomManager = document.querySelector("#streak");
   const questionDOMManager = document.querySelector("#question");
-  const correctGradientDomManager = document.querySelector("#correctGradient");
-  const wrongGradientDomManager = document.querySelector("#wrongGradient");
+  correctGradientDomManager = document.querySelector("#correctGradient");
+  wrongGradientDomManager = document.querySelector("#wrongGradient");
   answersDOMManager = document.querySelector("#answers");
 
   timer.resetTimer();
@@ -40,8 +48,8 @@ const setupGame = () => {
   }
 
   const renderQuestion = () => {
-    questionDOMManager.textContent = currentQuestion.questionText;
-    currentQuestion.options.forEach((option, i) => {
+    questionDOMManager.textContent = getQuestionText();
+    getQuestionOptions().forEach((option, i) => {
       answersDOMManager.children[i].textContent = option;
     });
   };
@@ -52,7 +60,7 @@ const setupGame = () => {
     if (e.target.tagName !== "BUTTON") return;
 
     let isCorrect = validateAnswer(e.target.textContent);
-    currentQuestion.tries -= 1;
+    decrementTries();
 
     if (isCorrect) {
       gameStats.correctAnswers += 1;
@@ -70,16 +78,15 @@ const setupGame = () => {
       timer.reduceTime(5000);
       e.target.disabled = true;
       gameStats.streak = 0;
-      console.log(e.target);
       wrongGradientDomManager.classList.toggle("hidden");
       setTimeout(() => {
         wrongGradientDomManager.classList.toggle("hidden");
       }, 250);
     }
 
-    if (isCorrect || currentQuestion.tries === 0) {
+    if (isCorrect || getTries() === 0) {
       enabledButtons();
-      getNewRandomQuestion();
+      loadQuestion();
       gameStats.totalQuestions += 1;
       renderQuestion();
     }

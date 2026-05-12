@@ -1,0 +1,90 @@
+[
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Historia",
+    "question": "¿En qué año cayó el Imperio Romano de Occidente?",
+    "correct_answer": "476 d.C.",
+    "incorrect_answers": ["410 d.C.", "395 d.C.", "509 d.C."]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es el elemento químico más abundante en el universo?",
+    "correct_answer": "Hidrógeno",
+    "incorrect_answers": ["Helio", "Oxígeno", "Carbono"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es el río más largo del mundo?",
+    "correct_answer": "Amazonas",
+    "incorrect_answers": ["Nilo", "Yangtsé", "Misisipi"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Arte",
+    "question": "¿Quién pintó 'La noche estrellada'?",
+    "correct_answer": "Vincent van Gogh",
+    "incorrect_answers": ["Pablo Picasso", "Claude Monet", "Salvador Dalí"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Deportes",
+    "question": "¿Cuántos jugadores tiene un equipo de fútbol en cancha?",
+    "correct_answer": "11",
+    "incorrect_answers": ["10", "9", "12"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Qué planeta del sistema solar tiene la rotación más rápida?",
+    "correct_answer": "Júpiter",
+    "incorrect_answers": ["Saturno", "Neptuno", "Urano"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿En qué año comenzó la Revolución Francesa?",
+    "correct_answer": "1789",
+    "incorrect_answers": ["1776", "1799", "1804"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entretenimiento",
+    "question": "¿Cómo se llama el personaje principal de 'Breaking Bad'?",
+    "correct_answer": "Walter White",
+    "incorrect_answers": ["Jesse Pinkman", "Gus Fring", "Saul Goodman"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Australia?",
+    "correct_answer": "Canberra",
+    "incorrect_answers": ["Sídney", "Melbourne", "Brisbane"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Cuál es la velocidad de la luz en el vacío (km/s aproximadamente)?",
+    "correct_answer": "300.000",
+    "incorrect_answers": ["150.000", "450.000", "1.000.000"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Historia",
+    "question": "¿En qué año terminó la Segunda Guerra Mundial?",
+    "correct_answer": "1945",
+    "incorrect_answers": ["1944", "1946", "1943"]
+  }
+]
