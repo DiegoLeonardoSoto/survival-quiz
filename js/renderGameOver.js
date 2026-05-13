@@ -94,28 +94,28 @@ function renderNewGame() {
           id="btn-answer-1"
           class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
       >
-          476 d.C.
+
       </button>
       <button
           disabled
           id="btn-answer-2"
           class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
       >
-          410 d.C.
+
       </button>
       <button
           disabled
           id="btn-answer-3"
           class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
       >
-          395 d.C.
+
       </button>
       <button
           disabled
           id="btn-answer-4"
           class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
       >
-          509 d.C.
+
       </button>
   </div>`;
 

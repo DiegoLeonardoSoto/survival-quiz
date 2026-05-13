@@ -1,4 +1,7 @@
 export const questionManager = async () => {
+  let totalCorrectAnswers = 0;
+  let totalQuestions = 0;
+
   const currentQuestion = {
     questionText: "",
     correctAnswer: "",
@@ -30,7 +33,9 @@ export const questionManager = async () => {
     }
   };
 
-  await loadQuestion();
+  function incrementTotalQuestions() {
+    totalQuestions += 1;
+  }
 
   function shuffle(correctAnswer, incorrectAnswers) {
     let options = [...incorrectAnswers];
@@ -47,15 +52,28 @@ export const questionManager = async () => {
   };
 
   const validateAnswer = (answer) => {
-    return answer === currentQuestion.correctAnswer;
+    const isCorrect = answer === currentQuestion.correctAnswer;
+    if (isCorrect) {
+      totalCorrectAnswers += 1;
+    }
+    return isCorrect;
+  };
+
+  const resetQuestions = () => {
+    totalCorrectAnswers = 0;
+    totalQuestions = 0;
   };
 
   return {
     getQuestionText: () => currentQuestion.questionText,
     getQuestionOptions: () => [...currentQuestion.options],
     getTries: () => currentQuestion.tries,
+    getTotalCorrectAnswers: () => totalCorrectAnswers,
+    getTotalQuestions: () => totalQuestions,
+    incrementTotalQuestions,
     decrementTries,
     validateAnswer,
     loadQuestion,
+    resetQuestions,
   };
 };

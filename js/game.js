@@ -8,17 +8,21 @@ const {
   getQuestionText,
   getQuestionOptions,
   getTries,
+  getTotalCorrectAnswers,
+  getTotalQuestions,
   decrementTries,
   validateAnswer,
+  incrementTotalQuestions,
   loadQuestion,
+  resetQuestions,
 } = await questionManager();
 
-let gameStats = {};
 let timerDomManager = null;
 let answersDOMManager = null;
 let streakDomManager = null;
 let correctGradientDomManager = null;
 let wrongGradientDomManager = null;
+let questionDOMManager = null;
 
 const {
   incrementStreak,
@@ -30,26 +34,26 @@ const {
 } = streakManager();
 
 let btnPlay = document.querySelector("#btn-play");
-const timer = countDownTimerController(60000);
+const timer = countDownTimerController(10000);
 const progressTimer = progressTimerController();
 
-const setupGame = () => {
-  gameStats = {
-    correctAnswers: 0,
-    totalQuestions: 1,
-    streak: 0,
-    longestStreak: 0,
-    survivalTime: "",
-  };
+const renderQuestion = () => {
+  questionDOMManager.textContent = getQuestionText();
+  getQuestionOptions().forEach((option, i) => {
+    answersDOMManager.children[i].textContent = option;
+  });
+};
 
+const setupGame = () => {
   timerDomManager = document.querySelector("#timer");
   streakDomManager = document.querySelector("#streak");
-  const questionDOMManager = document.querySelector("#question");
+  questionDOMManager = document.querySelector("#question");
   correctGradientDomManager = document.querySelector("#correctGradient");
   wrongGradientDomManager = document.querySelector("#wrongGradient");
   answersDOMManager = document.querySelector("#answers");
 
   timer.resetTimer();
+  resetQuestions();
 
   setElement(streakDomManager);
   cleanStreak();
@@ -60,15 +64,6 @@ const setupGame = () => {
     btnPlay.classList.toggle("hidden");
   }
 
-  const renderQuestion = () => {
-    questionDOMManager.textContent = getQuestionText();
-    getQuestionOptions().forEach((option, i) => {
-      answersDOMManager.children[i].textContent = option;
-    });
-  };
-
-  renderQuestion();
-
   answersDOMManager.addEventListener("click", (e) => {
     if (e.target.tagName !== "BUTTON") return;
 
@@ -76,7 +71,6 @@ const setupGame = () => {
     decrementTries();
 
     if (isCorrect) {
-      gameStats.correctAnswers += 1;
       incrementStreak();
       timer.addTime(5000);
       correctGradientDomManager.classList.toggle("hidden");
@@ -94,9 +88,9 @@ const setupGame = () => {
     }
 
     if (isCorrect || getTries() === 0) {
+      incrementTotalQuestions();
       enabledButtons();
       loadQuestion();
-      gameStats.totalQuestions += 1;
       renderQuestion();
     }
   });
@@ -105,6 +99,8 @@ const setupGame = () => {
 setupGame();
 
 btnPlay.addEventListener("click", () => {
+  loadQuestion();
+  renderQuestion();
   timer.startTimer(timerDomManager);
   showStreak();
   progressTimer.startTimer();
@@ -124,8 +120,13 @@ const disabledButtons = () => {
 };
 
 window.addEventListener("timerStop", (e) => {
-  gameStats.survivalTime = progressTimer.getFormatedTime();
-  gameStats.longestStreak = getLongestStreak();
+  const gameStats = {
+    correctAnswers: getTotalCorrectAnswers(),
+    totalQuestions: getTotalQuestions(),
+    longestStreak: getLongestStreak(),
+    survivalTime: progressTimer.getFormatedTime(),
+  };
+
   progressTimer.resetTimer();
   disabledButtons();
   btnPlay.classList.toggle("hidden");

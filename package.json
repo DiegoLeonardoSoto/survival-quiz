@@ -16,6 +16,7 @@
     "@fontsource-variable/stack-sans-notch": "^5.2.1",
     "@fontsource/agdasima": "^5.2.7",
     "@tailwindcss/cli": "^4.2.4",
+    "motion": "^12.38.0",
     "tailwindcss": "^4.2.4"
   }
 }
