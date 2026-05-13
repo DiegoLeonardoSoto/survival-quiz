@@ -9,7 +9,6 @@ export const countDownTimerController = (initTime) => {
 
     isRunning = true;
     intervalId = setInterval(() => {
-      console.log("this is from", intervalId);
       reduceTime(10);
       if (timerElement) timerElement.textContent = getFormatedTime(currentTime);
       if (currentTime <= 0) {

@@ -2,6 +2,7 @@ import { questionManager } from "./questionManager.js";
 import { renderGameOver } from "./renderGameOver.js";
 import { progressTimerController } from "./progressTimerController.js";
 import { countDownTimerController } from "./countDownTimerController.js";
+import { streakManager } from "./streakManager.js";
 
 const {
   getQuestionText,
@@ -18,6 +19,15 @@ let answersDOMManager = null;
 let streakDomManager = null;
 let correctGradientDomManager = null;
 let wrongGradientDomManager = null;
+
+const {
+  incrementStreak,
+  getLongestStreak,
+  setElement,
+  showStreak,
+  hiddenStreak,
+  cleanStreak,
+} = streakManager();
 
 let btnPlay = document.querySelector("#btn-play");
 const timer = countDownTimerController(60000);
@@ -40,6 +50,9 @@ const setupGame = () => {
   answersDOMManager = document.querySelector("#answers");
 
   timer.resetTimer();
+
+  setElement(streakDomManager);
+  cleanStreak();
 
   timerDomManager.textContent = timer.getFormatedTime();
 
@@ -64,11 +77,7 @@ const setupGame = () => {
 
     if (isCorrect) {
       gameStats.correctAnswers += 1;
-      gameStats.streak += 1;
-      gameStats.longestStreak = Math.max(
-        gameStats.longestStreak,
-        gameStats.streak,
-      );
+      incrementStreak();
       timer.addTime(5000);
       correctGradientDomManager.classList.toggle("hidden");
       setTimeout(() => {
@@ -77,7 +86,7 @@ const setupGame = () => {
     } else {
       timer.reduceTime(5000);
       e.target.disabled = true;
-      gameStats.streak = 0;
+      hiddenStreak();
       wrongGradientDomManager.classList.toggle("hidden");
       setTimeout(() => {
         wrongGradientDomManager.classList.toggle("hidden");
@@ -90,8 +99,6 @@ const setupGame = () => {
       gameStats.totalQuestions += 1;
       renderQuestion();
     }
-
-    streakDomManager.textContent = `x${gameStats.streak}`;
   });
 };
 
@@ -99,6 +106,7 @@ setupGame();
 
 btnPlay.addEventListener("click", () => {
   timer.startTimer(timerDomManager);
+  showStreak();
   progressTimer.startTimer();
   enabledButtons();
 });
@@ -117,13 +125,14 @@ const disabledButtons = () => {
 
 window.addEventListener("timerStop", (e) => {
   gameStats.survivalTime = progressTimer.getFormatedTime();
+  gameStats.longestStreak = getLongestStreak();
   progressTimer.resetTimer();
   disabledButtons();
   btnPlay.classList.toggle("hidden");
+
   renderGameOver(gameStats);
 });
 
 window.addEventListener("retryGame", (e) => {
   setupGame();
-  console.log("hola mundo");
 });
