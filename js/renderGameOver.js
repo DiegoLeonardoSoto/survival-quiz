@@ -1,6 +1,8 @@
 const screenGameDomManager = document.querySelector("#screen-game");
 
 export function renderGameOver(gameStats) {
+  const cloneScreenGame = screenGameDomManager.cloneNode(true);
+
   document
     .querySelector("main")
     .firstElementChild.classList.remove(
@@ -61,63 +63,23 @@ export function renderGameOver(gameStats) {
   btnRetry.addEventListener("click", () => {
     renderNewGame();
   });
-}
 
-function renderNewGame() {
-  document
-    .querySelector("main")
-    .firstElementChild.classList.remove(
-      "mask-linear-from-10%",
-      "mask-linear-to-25%",
-    );
-  document
-    .querySelector("main")
-    .firstElementChild.classList.add(
-      "mask-linear-from-30%",
-      "mask-linear-to-60%",
-    );
+  function renderNewGame() {
+    document
+      .querySelector("main")
+      .firstElementChild.classList.remove(
+        "mask-linear-from-10%",
+        "mask-linear-to-25%",
+      );
+    document
+      .querySelector("main")
+      .firstElementChild.classList.add(
+        "mask-linear-from-30%",
+        "mask-linear-to-60%",
+      );
 
-  screenGameDomManager.innerHTML = `                <span
-      id="timer"
-      class="text-7xl mt-4 mb-6 font-bold text-center"
-      >00:00:00</span
-  >
+    screenGameDomManager.replaceChildren(...cloneScreenGame.childNodes);
 
-  <p
-      id="question"
-      class="bg-secondary text-2xl text-white flex text-center w-full justify-center py-8 px-8"
-  ></p>
-
-  <div id="answers" class="flex flex-col w-full px-8 gap-4 mt-12">
-      <button
-          disabled
-          id="btn-answer-1"
-          class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
-      >
-
-      </button>
-      <button
-          disabled
-          id="btn-answer-2"
-          class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
-      >
-
-      </button>
-      <button
-          disabled
-          id="btn-answer-3"
-          class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
-      >
-
-      </button>
-      <button
-          disabled
-          id="btn-answer-4"
-          class="bg-background text-2xl font-bold text-secondary border-4 border-secondary p-4 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
-      >
-
-      </button>
-  </div>`;
-
-  window.dispatchEvent(new CustomEvent("retryGame"));
+    window.dispatchEvent(new CustomEvent("retryGame"));
+  }
 }

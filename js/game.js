@@ -34,7 +34,7 @@ const {
 } = streakManager();
 
 let btnPlay = document.querySelector("#btn-play");
-const timer = countDownTimerController(10000);
+const timer = countDownTimerController(60000);
 const progressTimer = progressTimerController();
 
 const renderQuestion = () => {
