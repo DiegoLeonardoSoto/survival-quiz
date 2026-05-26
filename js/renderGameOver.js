@@ -28,7 +28,7 @@ export function renderGameOver(gameStats) {
   </p>
   <p class="text-4xl md:text-6xl font-extrabold mt-3">${gameStats.survivalTime}</p>
 
-  <table class="table-auto w-full text-base md:text-lg my-5">
+  <table class="table-auto w-full md:w-lg text-base md:text-lg my-5">
       <tbody>
           <tr class="flex gap-3">
               <td class="flex-2 text-right">

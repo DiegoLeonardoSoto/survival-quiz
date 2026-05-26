@@ -24,12 +24,12 @@
 
             <div
                 id="wrongGradient"
-                class="hidden absolute top-0 right-0 w-full h-full bg-linear-to-t from-wrong from-0% via-transparent via-70% -z-10"
+                class="opacity-0 absolute top-0 right-0 w-full h-full bg-linear-to-t from-wrong from-0% via-transparent via-70% -z-10 transition duration-300"
             ></div>
 
             <div
                 id="correctGradient"
-                class="hidden absolute top-0 right-0 w-full h-full bg-linear-to-t from-accent from-0% via-transparent via-70% -z-20"
+                class="opacity-0 absolute top-0 right-0 w-full h-full bg-linear-to-t from-accent from-0% via-transparent via-70% -z-20 transition duration-300"
             ></div>
 
             <h1
@@ -85,16 +85,31 @@
 
             <button
                 id="btn-play"
-                class="bg-primary w-14 md:w-16 flex items-center justify-center rounded-md p-3 md:p-4 mt-2 cursor-pointer absolute bottom-4 right-4 md:bottom-6 md:right-6"
+                class="bg-primary w-14 md:w-16 flex items-center justify-center rounded-md p-3 md:p-4 mt-2 cursor-pointer absolute bottom-4 right-4 md:bottom-24 md:right-6 hidden"
             >
                 <svg class="w-6 h-6 text-white fill-current">
                     <use href="../assets/sprites.svg#icon-play"></use>
                 </svg>
             </button>
 
+            <button
+                disabled
+                id="btn-refresh"
+                class="absolute bottom-10 right-4 w-14 md:w-16 md:bottom-6 md:right-6 bg-muted flex items-center justify-center rounded-md p-3 mt-2 transition-all duration-200"
+            >
+                <svg class="w-10 h-10 text-white fill-current">
+                    <use href="../assets/sprites.svg#icon-refresh"></use>
+                </svg>
+
+                <span
+                    class="absolute inset-0 flex items-center justify-center text-white text-2xl font-bold text-solid-shadow hidden"
+                    >1</span
+                >
+            </button>
+
             <div
                 id="streak"
-                class="bg-secondary text-white text-2xl md:text-3xl font-bold rounded-xl absolute bottom-0 md:bottom-5 left-4 md:left-10 px-3 md:px-4 py-2 hidden will-change-transform backface-hidden"
+                class="origin-center bg-secondary text-white text-2xl md:text-5xl font-bold rounded-xl absolute bottom-5 left-4 md:left-10 px-3 md:px-6 md:py-4 py-2 hidden will-change-transform backface-hidden"
             >
                 x0
             </div>

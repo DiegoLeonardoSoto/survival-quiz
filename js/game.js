@@ -3,6 +3,7 @@ import { renderGameOver } from "./renderGameOver.js";
 import { progressTimerController } from "./progressTimerController.js";
 import { countDownTimerController } from "./countDownTimerController.js";
 import { streakManager } from "./streakManager.js";
+import { refreshManager } from "./refreshManager.js";
 
 const {
   getQuestionText,
@@ -23,6 +24,7 @@ let streakDomManager = null;
 let correctGradientDomManager = null;
 let wrongGradientDomManager = null;
 let questionDOMManager = null;
+let btnRefresh = null;
 
 const {
   incrementStreak,
@@ -32,6 +34,16 @@ const {
   hiddenStreak,
   cleanStreak,
 } = streakManager();
+
+const {
+  hasUses,
+  setRefreshElement,
+  decrementUses,
+  blockRefreshButton,
+  unblockRefreshButton,
+  isRefreshButtonBlocked,
+  resetRefreshButton,
+} = refreshManager();
 
 let btnPlay = document.querySelector("#btn-play");
 const timer = countDownTimerController(60000);
@@ -44,25 +56,29 @@ const renderQuestion = () => {
   });
 };
 
+let isNewGame = false;
+
 const setupGame = () => {
+  isNewGame = true;
+
   timerDomManager = document.querySelector("#timer");
   streakDomManager = document.querySelector("#streak");
   questionDOMManager = document.querySelector("#question");
   correctGradientDomManager = document.querySelector("#correctGradient");
   wrongGradientDomManager = document.querySelector("#wrongGradient");
   answersDOMManager = document.querySelector("#answers");
+  btnRefresh = document.querySelector("#btn-refresh");
 
   timer.resetTimer();
   resetQuestions();
 
   setElement(streakDomManager);
+  setRefreshElement(btnRefresh);
+  btnRefresh.classList.toggle("hidden", isNewGame);
+  btnPlay.classList.toggle("hidden", !isNewGame);
   cleanStreak();
 
   timerDomManager.textContent = timer.getFormatedTime();
-
-  if (btnPlay.classList.contains("hidden")) {
-    btnPlay.classList.toggle("hidden");
-  }
 
   answersDOMManager.addEventListener("click", (e) => {
     if (e.target.tagName !== "BUTTON") return;
@@ -73,18 +89,22 @@ const setupGame = () => {
     if (isCorrect) {
       incrementStreak();
       timer.addTime(5000);
-      correctGradientDomManager.classList.toggle("hidden");
+      correctGradientDomManager.classList.add("opacity-100");
       setTimeout(() => {
-        correctGradientDomManager.classList.toggle("hidden");
+        correctGradientDomManager.classList.remove("opacity-100");
       }, 250);
     } else {
       timer.reduceTime(5000);
       e.target.disabled = true;
       hiddenStreak();
-      wrongGradientDomManager.classList.toggle("hidden");
+      wrongGradientDomManager.classList.add("opacity-100");
       setTimeout(() => {
-        wrongGradientDomManager.classList.toggle("hidden");
+        wrongGradientDomManager.classList.remove("opacity-100");
       }, 250);
+
+      if (!isRefreshButtonBlocked() && hasUses()) {
+        blockRefreshButton();
+      }
     }
 
     if (isCorrect || getTries() === 0) {
@@ -92,6 +112,12 @@ const setupGame = () => {
       enabledButtons();
       loadQuestion();
       renderQuestion();
+
+      console.log(isRefreshButtonBlocked(), hasUses());
+
+      if (isRefreshButtonBlocked() && hasUses()) {
+        unblockRefreshButton();
+      }
     }
   });
 };
@@ -99,12 +125,27 @@ const setupGame = () => {
 setupGame();
 
 btnPlay.addEventListener("click", () => {
+  isNewGame = false;
+
+  btnPlay.classList.toggle("hidden", !isNewGame);
+  btnRefresh.classList.toggle("hidden", isNewGame);
+
   loadQuestion();
   renderQuestion();
   timer.startTimer(timerDomManager);
   showStreak();
   progressTimer.startTimer();
   enabledButtons();
+});
+
+btnRefresh.addEventListener("click", () => {
+  console.log(hasUses());
+  if (hasUses()) {
+    loadQuestion();
+    renderQuestion();
+  }
+
+  decrementUses();
 });
 
 const enabledButtons = () => {
@@ -120,6 +161,8 @@ const disabledButtons = () => {
 };
 
 window.addEventListener("timerStop", (e) => {
+  isNewGame = true;
+
   const gameStats = {
     correctAnswers: getTotalCorrectAnswers(),
     totalQuestions: getTotalQuestions(),
@@ -128,8 +171,10 @@ window.addEventListener("timerStop", (e) => {
   };
 
   progressTimer.resetTimer();
+  resetRefreshButton();
   disabledButtons();
-  btnPlay.classList.toggle("hidden");
+  btnPlay.classList.toggle("hidden", isNewGame);
+  btnRefresh.classList.toggle("hidden", isNewGame);
 
   renderGameOver(gameStats);
 });

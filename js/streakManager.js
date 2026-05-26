@@ -1,4 +1,3 @@
-//import { animate } from "motion";
 import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 export function streakManager() {
   let element = null;
@@ -16,12 +15,14 @@ export function streakManager() {
 
       oscillationControls = animate(
         element,
-        { x: [".5rem", "-.5rem"] },
+        {
+          x: ["1rem", "-1rem", "1rem"],
+        },
         {
           repeat: Infinity,
-          duration: 0.5,
+          duration: 2,
           repeatType: "reverse",
-          type: "tween",
+          easing: "lineal",
           delay: 0.3,
         },
       );
@@ -78,6 +79,14 @@ export function streakManager() {
   function incrementStreak() {
     streak++;
 
+    window.dispatchEvent(
+      new CustomEvent("refreshButtonEvent", {
+        detail: {
+          streak,
+        },
+      }),
+    );
+
     if (streak > 0) {
       showStreak();
       updateStreak();
@@ -98,7 +107,12 @@ export function streakManager() {
     if (element.classList.contains("hidden")) {
       element.classList.toggle("hidden");
       animate(element, { opacity: [0, 1] }, { duration: 0.1 });
-      animate(element, { y: "-2.5rem" }, { duration: 0.2 }, { type: "spring" });
+      animate(
+        element,
+        { y: ["5rem", "0rem"] },
+        { duration: 0.2 },
+        { type: "spring" },
+      );
 
       updateStreak();
     }
@@ -109,7 +123,9 @@ export function streakManager() {
       if (getStreak() !== "x0") {
         animate(
           element,
-          { y: ["-2.5rem", "-3.5rem", "-2.5rem"] },
+          {
+            y: ["0", "-2rem", "0"],
+          },
           { duration: 0.2 },
           { type: "spring" },
         );

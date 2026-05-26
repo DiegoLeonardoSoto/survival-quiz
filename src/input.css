@@ -17,6 +17,24 @@
     --color-accent: #01d46b;
     --color-muted: #999da9;
     --color-wrong: #d30248;
+    --color-yellow: #facc15;
     --font-stack-sans-notch: "Stack Sans Notch", sans-serif;
     --font-ibm-plex-sans: "IBM Plex Sans", sans-serif;
+}
+
+.text-solid-shadow {
+    text-shadow:
+        -1px -1px 0 var(--color-primary),
+        1px -1px 0 var(--color-primary),
+        -1px 1px 0 var(--color-primary),
+        1px 1px 0 var(--color-primary);
+    transition: text-shadow 0.2s;
+}
+
+.text-solid-shadow--wrong {
+    text-shadow:
+        -1px -1px 0 var(--color-wrong),
+        1px -1px 0 var(--color-wrong),
+        -1px 1px 0 var(--color-wrong),
+        1px 1px 0 var(--color-wrong);
 }
