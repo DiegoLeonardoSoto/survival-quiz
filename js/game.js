@@ -4,9 +4,9 @@ import { progressTimerManager } from "./progressTimerManager.js";
 import { streakManager } from "./streakManager.js";
 import { refreshManager } from "./refreshManager.js";
 import { setupGame } from "./setupGame.js";
+import { questionTimer } from "./questionTimer.js";
 
-const { getTotalCorrectAnswers, getTotalQuestions, renderQuestion } =
-  await questionManager;
+const { getTotalCorrectAnswers, getTotalQuestions } = await questionManager;
 
 const { getLongestStreak } = streakManager;
 
@@ -14,31 +14,21 @@ const { hasUses, decrementUses, resetRefreshButton, setRefreshEvent } =
   refreshManager;
 
 const { getFormatedTime, resetProgressTimer } = progressTimerManager;
+const { nextQuestion, stopQuestionTimer } = questionTimer;
 
-const {
-  answersDOMManager: answersDOMManagerSetup,
-  questionDOMManager: questionDOMManagerSetup,
-} = setupGame();
-
-let answersDOMManager = answersDOMManagerSetup;
-let questionDOMManager = questionDOMManagerSetup;
+setupGame();
 
 setRefreshEvent(async () => {
   if (hasUses()) {
-    await renderQuestion(questionDOMManager, answersDOMManager);
+    await nextQuestion();
   }
 
   decrementUses();
 });
 
-const disabledButtons = () => {
-  answersDOMManager.querySelectorAll("button").forEach((btn) => {
-    btn.classList.add("hidden");
-    btn.disabled = true;
-  });
-};
-
 window.addEventListener("timerStop", (e) => {
+  stopQuestionTimer();
+
   const gameStats = {
     correctAnswers: getTotalCorrectAnswers(),
     totalQuestions: getTotalQuestions(),
@@ -48,17 +38,10 @@ window.addEventListener("timerStop", (e) => {
 
   resetProgressTimer();
   resetRefreshButton();
-  disabledButtons();
 
   renderGameOver(gameStats);
 });
 
 window.addEventListener("retryGame", (e) => {
-  const {
-    answersDOMManager: answersDOMManagerSetup,
-    questionDOMManager: questionDOMManagerSetup,
-  } = setupGame();
-
-  answersDOMManager = answersDOMManagerSetup;
-  questionDOMManager = questionDOMManagerSetup;
+  setupGame();
 });

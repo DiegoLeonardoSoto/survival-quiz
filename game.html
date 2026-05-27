@@ -16,7 +16,7 @@
     </head>
     <body class="bg-background bg-grid min-h-screen overflow-hidden">
         <main
-            class="font-agdasima relative w-full md:w-screen mx-auto min-h-screen flex flex-col items-center justify-center"
+            class="font-agdasima relative w-full md:w-screen mx-auto min-h-screen flex flex-col items-center justify-center overflow-hidden"
         >
             <div
                 class="absolute top-0 right-0 w-full h-full bg-[linear-gradient(to_right,#999da9_1px,transparent_.5px),linear-gradient(to_bottom,#999da9_1px,transparent_.5px)] bg-size-[70px_70px] mask-linear-0 mask-linear-from-30% mask-linear-to-60% -z-50"
@@ -51,12 +51,18 @@
                     >00:00:00</span
                 >
 
-                <p
-                    id="question"
-                    class="bg-secondary text-xl md:text-2xl text-white flex text-center w-full justify-center py-6 md:py-8 px-6 md:px-12"
+                <div
+                    id="wrapper-question"
+                    class="bg-wrong text-xl md:text-2xl text-white flex text-center justify-center w-full relative"
                 >
-                    Respondé. Sobreviví. No falles. Estas listo?...
-                </p>
+                    <div
+                        id="bar-progress-question"
+                        class="origin-left bg-secondary w-full absolute top-0 left-0 z-30 h-full"
+                    ></div>
+                    <p id="question" class="py-6 md:py-8 px-6 md:px-12 z-40">
+                        Respondé. Sobreviví. No falles. Estas listo?...
+                    </p>
+                </div>
 
                 <div
                     id="answers"
@@ -64,7 +70,7 @@
                 >
                     <button
                         id="btn-play"
-                        class="text-9xl font-black text-center col-span-2 p-24 cursor-pointer"
+                        class="text-6xl md:text-9xl font-black text-center col-span-2 p-24 cursor-pointer"
                     >
                         Jugar
                     </button>

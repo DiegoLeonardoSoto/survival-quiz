@@ -1,6 +1,11 @@
+import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
 const createQuestionManager = async () => {
   let totalCorrectAnswers = 0;
   let totalQuestions = 0;
+  let questionDOMManager = null;
+  let answersDOMManager = null;
+  let barProgressQuestion = null;
 
   const currentQuestion = {
     questionText: "",
@@ -33,7 +38,25 @@ const createQuestionManager = async () => {
     }
   };
 
-  const renderQuestion = async (questionDOMManager, answersDOMManager) => {
+  let barAnimationInstance = null;
+
+  function barAnimation(currDuration) {
+    if (barAnimationInstance) {
+      barAnimationInstance.stop();
+    }
+
+    barAnimationInstance = animate(
+      barProgressQuestion,
+      { scaleX: [1, 0] },
+      { duration: currDuration },
+    );
+
+    return barAnimationInstance;
+  }
+
+  const renderQuestion = async (duration) => {
+    barAnimation(duration).play();
+
     await loadQuestion();
     questionDOMManager.textContent = currentQuestion.questionText;
     const options = [...currentQuestion.options];
@@ -43,6 +66,8 @@ const createQuestionManager = async () => {
 
     buttonsAnswers.forEach((button, i) => {
       button.textContent = options[i];
+      button.classList.remove("hidden");
+      button.disabled = false;
     });
   };
 
@@ -75,6 +100,21 @@ const createQuestionManager = async () => {
   const resetQuestions = () => {
     totalCorrectAnswers = 0;
     totalQuestions = 0;
+    answersDOMManager.querySelectorAll("button").forEach((btn) => {
+      btn.classList.add("hidden");
+      btn.disabled = true;
+    });
+    barProgressQuestion.style.cssText = "";
+  };
+
+  const setDOMReferences = (
+    currrQuestionDOMManager,
+    currAnswersDOMManager,
+    currBarProgressQuestion,
+  ) => {
+    questionDOMManager = currrQuestionDOMManager;
+    answersDOMManager = currAnswersDOMManager;
+    barProgressQuestion = currBarProgressQuestion;
   };
 
   return {
@@ -89,6 +129,8 @@ const createQuestionManager = async () => {
     loadQuestion,
     resetQuestions,
     renderQuestion,
+    setDOMReferences,
+    getDOMReferences: () => ({ questionDOMManager, answersDOMManager }),
   };
 };
 

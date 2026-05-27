@@ -46,6 +46,7 @@ export function gameIntroManager(btnPlay) {
 
   async function playIntro() {
     pulseColorAnimation().cancel();
+    btnPlay.disabled = true;
     const steps = [3, 2, 1, "YA!"];
 
     for (const step of steps) {
