@@ -1,11 +1,11 @@
 import { formatTime } from "./utilities.js";
 
-export const progressTimerController = () => {
+function createProgressTimerManager() {
   let currentTime = 0;
   let intervalId;
   let isRunning = false;
 
-  function startTimer() {
+  function startProgressTimer() {
     isRunning = true;
     intervalId = setInterval(() => {
       currentTime += 10;
@@ -23,14 +23,16 @@ export const progressTimerController = () => {
     return formatTime(time);
   }
 
-  function resetTimer() {
+  function resetProgressTimer() {
     stopTimer();
     currentTime = 0;
   }
 
   return {
-    startTimer,
-    resetTimer,
+    startProgressTimer,
+    resetProgressTimer,
     getFormatedTime,
   };
-};
+}
+
+export const progressTimerManager = createProgressTimerManager();

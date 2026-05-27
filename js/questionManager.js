@@ -1,4 +1,4 @@
-export const questionManager = async () => {
+const createQuestionManager = async () => {
   let totalCorrectAnswers = 0;
   let totalQuestions = 0;
 
@@ -31,6 +31,19 @@ export const questionManager = async () => {
     if (questions.length < 10) {
       questions = await getQuestions();
     }
+  };
+
+  const renderQuestion = async (questionDOMManager, answersDOMManager) => {
+    await loadQuestion();
+    questionDOMManager.textContent = currentQuestion.questionText;
+    const options = [...currentQuestion.options];
+    const buttonsAnswers = [...answersDOMManager.children].filter((e) =>
+      e.id.includes("answer"),
+    );
+
+    buttonsAnswers.forEach((button, i) => {
+      button.textContent = options[i];
+    });
   };
 
   function incrementTotalQuestions() {
@@ -75,5 +88,8 @@ export const questionManager = async () => {
     validateAnswer,
     loadQuestion,
     resetQuestions,
+    renderQuestion,
   };
 };
+
+export const questionManager = createQuestionManager();

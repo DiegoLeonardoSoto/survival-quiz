@@ -1,5 +1,5 @@
 import { formatTime } from "./utilities.js";
-export const countDownTimerController = (initTime) => {
+export const countDownTimerManager = (initTime) => {
   let currentTime = initTime;
   let intervalId;
   let isRunning = false;

@@ -1,16 +1,11 @@
 import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 
-export function refreshManager() {
+function createRefreshManager(refreshElement) {
   let uses = 0;
   let checkArray = [];
-  let refreshElement = null;
-  let usesSpanElement = null;
+  let usesSpanElement = refreshElement.querySelector("span");
   let isBlocked = false;
-
-  function setRefreshElement(element) {
-    refreshElement = element;
-    usesSpanElement = element.querySelector("span");
-  }
+  let rotation = 0;
 
   window.addEventListener("refreshButtonEvent", (event) => {
     const { streak } = event.detail;
@@ -42,13 +37,13 @@ export function refreshManager() {
   }
 
   function _rotate() {
-    animate(
+    rotation += 360;
+    return animate(
       refreshElement,
-      {
-        rotate: [0, -360],
-      },
+      { rotate: rotation },
       {
         duration: 0.2,
+        easing: "linear",
       },
     );
   }
@@ -60,18 +55,24 @@ export function refreshManager() {
         scale: [1, 2, 1],
       },
       {
-        duration: 0.2,
+        duration: 0.1,
       },
     );
   }
 
+  let isAnimating = false;
   function decrementUses() {
-    if (uses <= 0) return;
+    if (!hasUses() || isAnimating) return;
+
+    isAnimating = true;
+    refreshElement.disabled = true;
     --uses;
 
-    _rotate();
-
-    updateBadge();
+    _rotate().then(() => {
+      isAnimating = false;
+      updateBadge();
+      if (hasUses()) refreshElement.disabled = false;
+    });
 
     if (!hasUses()) {
       disabledRefreshButton();
@@ -104,7 +105,6 @@ export function refreshManager() {
       usesSpanElement.classList.add("hidden");
     } else {
       usesSpanElement.classList.remove("hidden");
-      _scale();
     }
   }
 
@@ -134,15 +134,31 @@ export function refreshManager() {
     checkArray = [];
     isBlocked = false;
     disabledRefreshButton();
+    refreshElement.classList.add("hidden");
+  }
+
+  function setRefreshEvent(callback) {
+    refreshElement.addEventListener("click", callback);
+  }
+
+  function showRefreshButton() {
+    refreshElement.classList.remove("hidden");
+
+    _rotate().play();
   }
 
   return {
     hasUses,
-    setRefreshElement,
     decrementUses,
     blockRefreshButton,
     unblockRefreshButton,
     isRefreshButtonBlocked: () => isBlocked,
     resetRefreshButton,
+    setRefreshEvent,
+    showRefreshButton,
   };
 }
+
+export const refreshManager = createRefreshManager(
+  document.querySelector("#btn-refresh"),
+);

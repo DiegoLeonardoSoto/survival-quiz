@@ -1,6 +1,5 @@
 import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
-export function streakManager() {
-  let element = null;
+function createStreakManager(element) {
   let streak = 0;
   let longestStreak = 0;
 
@@ -163,17 +162,15 @@ export function streakManager() {
     longestStreak = streak;
   }
 
-  function setElement(newElement) {
-    element = newElement;
-  }
-
   return {
     getLongestStreak: () => longestStreak,
     incrementStreak,
     cleanStreak,
 
-    setElement,
     showStreak,
     hiddenStreak,
   };
 }
+export const streakManager = createStreakManager(
+  document.getElementById("streak"),
+);

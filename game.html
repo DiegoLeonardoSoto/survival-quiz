@@ -54,48 +54,47 @@
                 <p
                     id="question"
                     class="bg-secondary text-xl md:text-2xl text-white flex text-center w-full justify-center py-6 md:py-8 px-6 md:px-12"
-                ></p>
+                >
+                    Respondé. Sobreviví. No falles. Estas listo?...
+                </p>
 
                 <div
                     id="answers"
-                    class="grid grid-cols-1 md:grid-cols-2 w-full px-4 md:w-2xl md:px-0 gap-4 mt-8"
+                    class="grid grid-cols-1 place-items-center md:grid-cols-2 w-full px-4 md:w-2xl md:px-0 gap-4 mt-8"
                 >
+                    <button
+                        id="btn-play"
+                        class="text-9xl font-black text-center col-span-2 p-24 cursor-pointer"
+                    >
+                        Jugar
+                    </button>
                     <button
                         disabled
                         id="btn-answer-1"
-                        class="bg-background text-xl md:text-2xl md:h-24 md:rounded-3xl font-bold text-secondary border-4 border-secondary p-2 md:p-3 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
+                        class="bg-background text-xl md:text-2xl md:h-24 md:rounded-3xl font-bold text-secondary border-4 border-secondary p-2 md:p-3 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted hidden"
                     ></button>
                     <button
                         disabled
                         id="btn-answer-2"
-                        class="bg-background text-xl md:text-2xl md:h-24 md:rounded-3xl font-bold text-secondary border-4 border-secondary p-2 md:p-3 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
+                        class="bg-background text-xl md:text-2xl md:h-24 md:rounded-3xl font-bold text-secondary border-4 border-secondary p-2 md:p-3 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted hidden"
                     ></button>
                     <button
                         disabled
                         id="btn-answer-3"
-                        class="bg-background text-xl md:text-2xl md:h-24 md:rounded-3xl font-bold text-secondary border-4 border-secondary p-2 md:p-3 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
+                        class="bg-background text-xl md:text-2xl md:h-24 md:rounded-3xl font-bold text-secondary border-4 border-secondary p-2 md:p-3 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted hidden"
                     ></button>
                     <button
                         disabled
                         id="btn-answer-4"
-                        class="bg-background text-xl md:text-2xl md:h-24 md:rounded-3xl font-bold text-secondary border-4 border-secondary p-2 md:p-3 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted"
+                        class="bg-background text-xl md:text-2xl md:h-24 md:rounded-3xl font-bold text-secondary border-4 border-secondary p-2 md:p-3 rounded-full w-full cursor-pointer disabled:border-muted disabled:text-muted hidden"
                     ></button>
                 </div>
             </section>
 
             <button
-                id="btn-play"
-                class="bg-primary w-14 md:w-16 flex items-center justify-center rounded-md p-3 md:p-4 mt-2 cursor-pointer absolute bottom-4 right-4 md:bottom-24 md:right-6 hidden"
-            >
-                <svg class="w-6 h-6 text-white fill-current">
-                    <use href="../assets/sprites.svg#icon-play"></use>
-                </svg>
-            </button>
-
-            <button
                 disabled
                 id="btn-refresh"
-                class="absolute bottom-10 right-4 w-14 md:w-16 md:bottom-6 md:right-6 bg-muted flex items-center justify-center rounded-md p-3 mt-2 transition-all duration-200"
+                class="absolute bottom-10 right-4 w-14 md:w-16 md:bottom-6 md:right-6 bg-muted flex items-center justify-center rounded-md p-3 mt-2 transition-all duration-200 hidden"
             >
                 <svg class="w-10 h-10 text-white fill-current">
                     <use href="../assets/sprites.svg#icon-refresh"></use>
