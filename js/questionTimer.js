@@ -1,41 +1,35 @@
 import { questionManager } from "./questionManager.js";
 
-const { incrementTotalQuestions, renderQuestion, resetQuestions } =
-  await questionManager;
+const { incrementTotalQuestions, renderQuestion } = await questionManager;
 
 function createQuestionTimer() {
-  let idTimeOut = null;
-  let firstQuestion = true;
-  const duration = 10;
+  let questionStartTime = null;
+  const DURATION = 10;
 
-  async function nextQuestion() {
-    clearTimeout(idTimeOut);
-    await renderQuestion(duration);
+  function startQuestionTimer() {
+    questionStartTime = performance.now();
+  }
 
-    if (firstQuestion) {
-      firstQuestion = false;
-    } else {
-      incrementTotalQuestions();
-    }
-
-    idTimeOut = setTimeout(() => {
-      nextQuestion();
-    }, duration * 1000);
+  function hasExpiredQuestionTimer() {
+    if (questionStartTime === null) return false;
+    return performance.now() - questionStartTime > DURATION * 1000;
   }
 
   function stopQuestionTimer() {
-    if (idTimeOut !== null) {
-      clearTimeout(idTimeOut);
-      idTimeOut = null;
-    }
-    resetQuestions();
+    questionStartTime = null;
+  }
 
-    firstQuestion = true;
+  async function nextQuestion(currentTime) {
+    await renderQuestion(Math.min(DURATION, currentTime / 1000));
+    incrementTotalQuestions();
+
+    startQuestionTimer();
   }
 
   return {
-    nextQuestion,
+    hasExpiredQuestionTimer,
     stopQuestionTimer,
+    nextQuestion,
   };
 }
 

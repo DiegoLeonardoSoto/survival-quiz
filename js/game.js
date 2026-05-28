@@ -5,6 +5,7 @@ import { streakManager } from "./streakManager.js";
 import { refreshManager } from "./refreshManager.js";
 import { setupGame } from "./setupGame.js";
 import { questionTimer } from "./questionTimer.js";
+import { countDownTimerManager } from "./countDownTimerManager.js";
 
 const { getTotalCorrectAnswers, getTotalQuestions } = await questionManager;
 
@@ -14,21 +15,20 @@ const { hasUses, decrementUses, resetRefreshButton, setRefreshEvent } =
   refreshManager;
 
 const { getFormatedTime, resetProgressTimer } = progressTimerManager;
-const { nextQuestion, stopQuestionTimer } = questionTimer;
+const { getCurrentTime } = countDownTimerManager;
+const { nextQuestion } = questionTimer;
 
 setupGame();
 
 setRefreshEvent(async () => {
   if (hasUses()) {
-    await nextQuestion();
+    await nextQuestion(getCurrentTime());
   }
 
   decrementUses();
 });
 
 window.addEventListener("timerStop", (e) => {
-  stopQuestionTimer();
-
   const gameStats = {
     correctAnswers: getTotalCorrectAnswers(),
     totalQuestions: getTotalQuestions(),
@@ -38,7 +38,6 @@ window.addEventListener("timerStop", (e) => {
 
   resetProgressTimer();
   resetRefreshButton();
-
   renderGameOver(gameStats);
 });
 

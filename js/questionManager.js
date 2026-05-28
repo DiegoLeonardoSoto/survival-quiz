@@ -42,22 +42,21 @@ const createQuestionManager = async () => {
 
   function barAnimation(currDuration) {
     if (barAnimationInstance) {
-      barAnimationInstance.stop();
+      barAnimationInstance.cancel();
     }
 
     barAnimationInstance = animate(
       barProgressQuestion,
       { scaleX: [1, 0] },
-      { duration: currDuration },
+      { duration: currDuration, easing: "linear" },
     );
 
     return barAnimationInstance;
   }
 
   const renderQuestion = async (duration) => {
-    barAnimation(duration).play();
-
     await loadQuestion();
+    barAnimation(duration).play();
     questionDOMManager.textContent = currentQuestion.questionText;
     const options = [...currentQuestion.options];
     const buttonsAnswers = [...answersDOMManager.children].filter((e) =>

@@ -1,18 +1,31 @@
+import { questionTimer } from "./questionTimer.js";
 import { formatTime } from "./utilities.js";
-export const countDownTimerManager = (initTime) => {
+
+const { stopQuestionTimer, hasExpiredQuestionTimer, nextQuestion } =
+  questionTimer;
+
+function createCountDownTimerManager(initTime) {
   let currentTime = initTime;
   let intervalId;
   let isRunning = false;
 
   function startTimer(timerElement = null) {
     if (isRunning) return;
-
     isRunning = true;
+
     intervalId = setInterval(() => {
       reduceTime(10);
       if (timerElement) timerElement.textContent = getFormatedTime(currentTime);
       if (currentTime <= 0) {
+        stopQuestionTimer();
         stopTimer();
+      } else if (hasExpiredQuestionTimer()) {
+        if (currentTime > 1000) {
+          nextQuestion(getCurrentTime());
+        } else {
+          stopQuestionTimer();
+          stopTimer();
+        }
       }
     }, 10);
   }
@@ -33,7 +46,6 @@ export const countDownTimerManager = (initTime) => {
     if (isRunning) {
       clearInterval(intervalId);
       isRunning = false;
-
       window.dispatchEvent(
         new CustomEvent("timerStop", {
           detail: { currentTime },
@@ -51,6 +63,10 @@ export const countDownTimerManager = (initTime) => {
     stopTimer();
   }
 
+  function getCurrentTime() {
+    return currentTime;
+  }
+
   return {
     startTimer,
     isRunning,
@@ -59,5 +75,8 @@ export const countDownTimerManager = (initTime) => {
     stopTimer,
     getFormatedTime,
     resetTimer,
+    getCurrentTime,
   };
-};
+}
+
+export const countDownTimerManager = createCountDownTimerManager(10000);

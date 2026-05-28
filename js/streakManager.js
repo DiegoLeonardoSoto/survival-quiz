@@ -21,7 +21,7 @@ function createStreakManager(element) {
           repeat: Infinity,
           duration: 2,
           repeatType: "reverse",
-          easing: "lineal",
+          easing: "linear",
           delay: 0.3,
         },
       );
@@ -29,10 +29,8 @@ function createStreakManager(element) {
       intervalId = setInterval(() => {
         if (elapsedTime > 1000 && elapsedTime <= 3000) {
           oscillationControls.speed *= 2;
-          console.log("speed 1");
         } else if (elapsedTime > 3000) {
           oscillationControls.speed *= 2;
-          console.log("speed 2");
         }
 
         if (elapsedTime >= 5000) {

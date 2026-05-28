@@ -2,7 +2,6 @@ import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 
 export function gameIntroManager(btnPlay) {
   function setBtnPlayEvent(callback) {
-    console.log("as");
     btnPlay.addEventListener("click", callback);
   }
 

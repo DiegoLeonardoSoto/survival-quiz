@@ -11,9 +11,7 @@ const {
   getTries,
   decrementTries,
   validateAnswer,
-  incrementTotalQuestions,
   resetQuestions,
-  renderQuestion,
   setDOMReferences,
   getDOMReferences,
 } = await questionManager;
@@ -26,12 +24,19 @@ const {
   unblockRefreshButton,
   isRefreshButtonBlocked,
   showRefreshButton,
+  resetRefreshButton,
 } = refreshManager;
 
-const { resetTimer, getFormatedTime, addTime, reduceTime, startTimer } =
-  countDownTimerManager(10000);
+const {
+  resetTimer,
+  getFormatedTime,
+  addTime,
+  reduceTime,
+  startTimer,
+  getCurrentTime,
+} = countDownTimerManager;
 const { startProgressTimer } = progressTimerManager;
-const { nextQuestion, stopTimer } = questionTimer;
+const { nextQuestion } = questionTimer;
 
 let timerDomManager = null;
 const correctGradientDomManager = document.querySelector("#correctGradient");
@@ -65,6 +70,7 @@ export function setupGame() {
 
   resetTimer();
   resetQuestions();
+  resetRefreshButton();
   cleanStreak();
   resetIntro();
 
@@ -99,9 +105,7 @@ export function setupGame() {
     }
 
     if (isCorrect || getTries() === 0) {
-      incrementTotalQuestions();
-      await nextQuestion();
-
+      await nextQuestion(getCurrentTime());
       if (isRefreshButtonBlocked() && hasUses()) {
         unblockRefreshButton();
       }
@@ -110,8 +114,8 @@ export function setupGame() {
 
   setBtnPlayEvent(() => {
     playIntro().then(async () => {
-      await nextQuestion();
       showRefreshButton();
+      await nextQuestion(getCurrentTime());
       startTimer(timerDomManager);
       startProgressTimer();
     });

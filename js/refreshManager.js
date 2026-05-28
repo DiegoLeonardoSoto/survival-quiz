@@ -9,7 +9,6 @@ function createRefreshManager(refreshElement) {
 
   window.addEventListener("refreshButtonEvent", (event) => {
     const { streak } = event.detail;
-    console.log(streak);
     if (streak < 0 || checkArray.includes(streak)) return;
 
     if (streak % 2 === 0) {
@@ -80,7 +79,6 @@ function createRefreshManager(refreshElement) {
   }
 
   function hasUses() {
-    console.log(uses);
     return uses > 0;
   }
 
@@ -94,8 +92,14 @@ function createRefreshManager(refreshElement) {
 
   function disabledRefreshButton() {
     refreshElement.disabled = true;
-    refreshElement.classList.add("bg-muted");
-    refreshElement.classList.remove("cursor-pointer", "bg-primary");
+
+    if (isBlocked) {
+      refreshElement.classList.add("bg-muted");
+      refreshElement.classList.remove("cursor-pointer", "bg-wrong");
+    } else {
+      refreshElement.classList.add("bg-muted");
+      refreshElement.classList.remove("cursor-pointer", "bg-primary");
+    }
   }
 
   function updateBadge() {
@@ -132,8 +136,9 @@ function createRefreshManager(refreshElement) {
   function resetRefreshButton() {
     uses = 0;
     checkArray = [];
-    isBlocked = false;
+    updateBadge();
     disabledRefreshButton();
+    isBlocked = false;
     refreshElement.classList.add("hidden");
   }
 
