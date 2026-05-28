@@ -1,8 +1,8 @@
 import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+import { refreshManager } from "./refreshManager.js";
 import { questionManager } from "./questionManager.js";
 import { streakManager } from "./streakManager.js";
 import { progressTimerManager } from "./progressTimerManager.js";
-import { refreshManager } from "./refreshManager.js";
 import { gameIntroManager } from "./gameIntroManager.js";
 import { countDownTimerManager } from "./countDownTimerManager.js";
 import { questionTimer } from "./questionTimer.js";
@@ -22,7 +22,6 @@ const {
   hasUses,
   blockRefreshButton,
   unblockRefreshButton,
-  isRefreshButtonBlocked,
   showRefreshButton,
   resetRefreshButton,
 } = refreshManager;
@@ -99,14 +98,14 @@ export function setupGame() {
         wrongGradientDomManager.classList.remove("opacity-100");
       }, 250);
 
-      if (!isRefreshButtonBlocked() && hasUses()) {
+      if (hasUses()) {
         blockRefreshButton();
       }
     }
 
     if (isCorrect || getTries() === 0) {
       await nextQuestion(getCurrentTime());
-      if (isRefreshButtonBlocked() && hasUses()) {
+      if (hasUses()) {
         unblockRefreshButton();
       }
     }

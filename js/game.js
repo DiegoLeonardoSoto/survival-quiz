@@ -11,22 +11,11 @@ const { getTotalCorrectAnswers, getTotalQuestions } = await questionManager;
 
 const { getLongestStreak } = streakManager;
 
-const { hasUses, decrementUses, resetRefreshButton, setRefreshEvent } =
-  refreshManager;
+const { resetRefreshButton } = refreshManager;
 
 const { getFormatedTime, resetProgressTimer } = progressTimerManager;
-const { getCurrentTime } = countDownTimerManager;
-const { nextQuestion } = questionTimer;
 
 setupGame();
-
-setRefreshEvent(async () => {
-  if (hasUses()) {
-    await nextQuestion(getCurrentTime());
-  }
-
-  decrementUses();
-});
 
 window.addEventListener("timerStop", (e) => {
   const gameStats = {
