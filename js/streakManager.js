@@ -1,79 +1,138 @@
 import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+
+function streakAnimations(element) {
+  function hiddeAnimation() {
+    return animate(
+      element,
+      { y: ["-2.5rem", "-3.5rem", "2.5rem"] },
+      { duration: 0.2 },
+    );
+  }
+
+  function showAnimation() {
+    return animate(
+      element,
+      { opacity: [0, 1], y: ["5rem", "0rem"] },
+      { duration: 0.2, type: "spring" },
+    );
+  }
+
+  function updateAnimation() {
+    return animate(
+      element,
+      {
+        y: ["0", "-2rem", "0"],
+      },
+      { duration: 0.2, type: "spring" },
+    );
+  }
+
+  function timerAnimation() {
+    return animate(
+      element,
+      {
+        x: ["1rem", "-1rem", "1rem"],
+      },
+      {
+        repeat: Infinity,
+        duration: 2,
+        repeatType: "reverse",
+        easing: "linear",
+        delay: 0.3,
+      },
+    );
+  }
+
+  return {
+    hiddeAnimation,
+    showAnimation,
+    updateAnimation,
+    timerAnimation,
+  };
+}
+
+function streakTimer(onExpire, timerAnimation) {
+  let intervalId = null;
+  let elapsedTime = 0;
+  let timerAnimationController = null;
+
+  function _timerTickLoop() {
+    if (!timerAnimationController || intervalId) return;
+
+    intervalId = setInterval(() => {
+      if (elapsedTime > 1000 && elapsedTime <= 3000) {
+        timerAnimationController.speed *= 2;
+      } else if (elapsedTime > 3000) {
+        timerAnimationController.speed *= 2;
+      }
+
+      if (elapsedTime >= 5000) {
+        cancelTimer();
+        onExpire();
+      }
+
+      elapsedTime += 1000;
+    }, 1000);
+  }
+
+  function cancelTimer() {
+    if (!timerAnimationController || !intervalId) return;
+
+    clearInterval(intervalId);
+    timerAnimationController.stop();
+    timerAnimationController = null;
+    intervalId = null;
+    elapsedTime = 0;
+  }
+
+  function startTimer() {
+    if (intervalId) {
+      cancelTimer();
+    }
+
+    timerAnimationController = timerAnimation();
+    timerAnimationController.play();
+    _timerTickLoop();
+  }
+
+  return {
+    cancelTimer,
+    startTimer,
+  };
+}
+
 function createStreakManager(element) {
   let streak = 0;
   let longestStreak = 0;
+  let isHiding = false;
 
-  function streakTimer() {
-    let intervalId = null;
-    let elapsedTime = 0;
-    let oscillationControls = null;
-    let isRunning = false;
+  const { hiddeAnimation, showAnimation, updateAnimation, timerAnimation } =
+    streakAnimations(element);
 
-    function startTimer() {
-      if (isRunning) return;
+  const hiddenAnimationController = hiddeAnimation();
 
-      oscillationControls = animate(
-        element,
-        {
-          x: ["1rem", "-1rem", "1rem"],
-        },
-        {
-          repeat: Infinity,
-          duration: 2,
-          repeatType: "reverse",
-          easing: "linear",
-          delay: 0.3,
-        },
-      );
+  const { startTimer, cancelTimer } = streakTimer(hiddenStreak, timerAnimation);
 
-      intervalId = setInterval(() => {
-        if (elapsedTime > 1000 && elapsedTime <= 3000) {
-          oscillationControls.speed *= 2;
-        } else if (elapsedTime > 3000) {
-          oscillationControls.speed *= 2;
-        }
-
-        if (elapsedTime >= 5000) {
-          cancelTimer();
-          hiddenStreak();
-        }
-
-        elapsedTime += 1000;
-      }, 1000);
-
-      isRunning = true;
-    }
-
-    function cancelTimer() {
-      if (!isRunning) return;
-
-      clearInterval(intervalId);
-      oscillationControls.stop();
-      oscillationControls = null;
-      elapsedTime = 0;
-      isRunning = false;
-    }
-
-    function restartTimer() {
-      if (!isRunning) startTimer();
-      elapsedTime = 0;
-      oscillationControls.speed = 1;
-    }
-
-    return {
-      startTimer,
-      cancelTimer,
-      restartTimer,
-    };
-  }
-
-  const { startTimer, cancelTimer, restartTimer } = streakTimer();
-
-  function getStreak() {
+  function _getStreakText() {
     return `x${streak}`;
   }
 
+  function _updateLongestStreak(currStreak) {
+    longestStreak = Math.max(longestStreak, currStreak);
+  }
+
+  function _showStreak() {
+    if (element === null) return;
+
+    hiddenAnimationController.cancel();
+    isHiding = false;
+
+    element.classList.remove("hidden");
+    showAnimation().play();
+  }
+
   function incrementStreak() {
+    if (streak < 0) return;
     streak++;
 
     window.dispatchEvent(
@@ -84,88 +143,39 @@ function createStreakManager(element) {
       }),
     );
 
-    if (streak > 0) {
-      showStreak();
-      updateStreak();
+    if (streak === 1) {
+      _showStreak();
+      element.textContent = _getStreakText();
+    } else {
+      element.textContent = _getStreakText();
+      updateAnimation().play();
     }
-
-    if (streak > longestStreak) {
-      updateLongestStreak();
-    }
-  }
-
-  function resetStreak() {
-    streak = 0;
-  }
-
-  function showStreak() {
-    if (element === null) return;
-
-    if (element.classList.contains("hidden")) {
-      element.classList.toggle("hidden");
-      animate(element, { opacity: [0, 1] }, { duration: 0.1 });
-      animate(
-        element,
-        { y: ["5rem", "0rem"] },
-        { duration: 0.2 },
-        { type: "spring" },
-      );
-
-      updateStreak();
-    }
-  }
-
-  function updateStreak() {
-    if (element !== null) {
-      if (getStreak() !== "x0") {
-        animate(
-          element,
-          {
-            y: ["0", "-2rem", "0"],
-          },
-          { duration: 0.2 },
-          { type: "spring" },
-        );
-      }
-      element.textContent = getStreak();
-      restartTimer();
-    }
+    _updateLongestStreak(streak);
+    startTimer();
   }
 
   function hiddenStreak() {
-    if (element === null) return;
+    if (isHiding) return;
 
-    if (!element.classList.contains("hidden")) {
-      animate(
-        element,
-        { y: ["-2.5rem", "-3.5rem", "2.5rem"] },
-        { duration: 0.2 },
-      );
-
-      setTimeout(() => {
-        element.classList.toggle("hidden");
-      }, 200);
-
-      resetStreak();
-      cancelTimer();
-    }
+    cancelTimer();
+    isHiding = true;
+    hiddenAnimationController.play();
+    hiddenAnimationController.then(() => {
+      element.classList.add("hidden");
+      streak = 0;
+      isHiding = false;
+    });
   }
 
   function cleanStreak() {
-    hiddenStreak();
     longestStreak = 0;
-  }
-
-  function updateLongestStreak() {
-    longestStreak = streak;
+    hiddenStreak();
   }
 
   return {
     getLongestStreak: () => longestStreak,
     incrementStreak,
     cleanStreak,
-
-    showStreak,
     hiddenStreak,
   };
 }
