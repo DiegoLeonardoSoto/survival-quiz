@@ -5,7 +5,7 @@ function streakAnimations(element) {
     return animate(
       element,
       { y: ["-2.5rem", "-3.5rem", "2.5rem"] },
-      { duration: 0.2 },
+      { duration: 0.3 },
     );
   }
 
@@ -13,7 +13,7 @@ function streakAnimations(element) {
     return animate(
       element,
       { opacity: [0, 1], y: ["5rem", "0rem"] },
-      { duration: 0.2, type: "spring" },
+      { duration: 0.3, ease: "easeOut" },
     );
   }
 
@@ -23,7 +23,7 @@ function streakAnimations(element) {
       {
         y: ["0", "-2rem", "0"],
       },
-      { duration: 0.2, type: "spring" },
+      { duration: 0.3, ease: "easeOut" },
     );
   }
 
@@ -37,7 +37,7 @@ function streakAnimations(element) {
         repeat: Infinity,
         duration: 2,
         repeatType: "reverse",
-        easing: "linear",
+        ease: "linear",
         delay: 0.3,
       },
     );
@@ -109,7 +109,7 @@ function createStreakManager(element) {
   const { hiddeAnimation, showAnimation, updateAnimation, timerAnimation } =
     streakAnimations(element);
 
-  const hiddenAnimationController = hiddeAnimation();
+  let currentHiddenAnimation = null;
 
   const { startTimer, cancelTimer } = streakTimer(hiddenStreak, timerAnimation);
 
@@ -124,8 +124,11 @@ function createStreakManager(element) {
   function _showStreak() {
     if (element === null) return;
 
-    hiddenAnimationController.cancel();
-    isHiding = false;
+    if (currentHiddenAnimation) {
+      currentHiddenAnimation.cancel();
+      currentHiddenAnimation = null;
+      isHiding = false;
+    }
 
     element.classList.remove("hidden");
     showAnimation().play();
@@ -159,8 +162,9 @@ function createStreakManager(element) {
 
     cancelTimer();
     isHiding = true;
-    hiddenAnimationController.play();
-    hiddenAnimationController.then(() => {
+    currentHiddenAnimation = hiddeAnimation();
+    currentHiddenAnimation.then(() => {
+      console.log("termino la animacionde hidden");
       element.classList.add("hidden");
       streak = 0;
       isHiding = false;
@@ -169,7 +173,7 @@ function createStreakManager(element) {
 
   function cleanStreak() {
     longestStreak = 0;
-    hiddenStreak();
+    streak = 0;
   }
 
   return {

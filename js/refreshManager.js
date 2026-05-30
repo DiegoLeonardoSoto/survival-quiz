@@ -203,15 +203,17 @@ function createRefreshManager(refreshElement) {
     isAnimating = true;
     refreshElement.disabled = true;
     --uses;
+    console.log("uses", uses);
 
-    decrementAnimation().then(() => {
-      isAnimating = false;
-      _updateBadge();
-      if (hasUses()) refreshElement.disabled = false;
-    });
-
-    if (!hasUses()) {
+    if (hasUses()) {
+      decrementAnimation().then(() => {
+        isAnimating = false;
+        _updateBadge();
+        refreshElement.disabled = false;
+      });
+    } else {
       _disabledRefreshButton();
+      isAnimating = false;
     }
   }
 
@@ -285,6 +287,7 @@ function createRefreshManager(refreshElement) {
     resetAnimations();
     _updateBadge();
     isBlocked = false;
+    isAnimating = false;
     resetAnimation().play();
     refreshElement.classList.add("hidden");
   }
