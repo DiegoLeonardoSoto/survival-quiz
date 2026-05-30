@@ -3,13 +3,13 @@ import { questionManager } from "./questionManager.js";
 const {
   incrementTotalQuestions,
   renderQuestion,
-  getDuration,
+  getDificultyDuration,
   getTotalQuestions,
 } = await questionManager;
 
 function createQuestionTimer() {
   let questionStartTime = null;
-  let timerDuration = getDuration();
+  let timerDuration = getDificultyDuration();
 
   function startQuestionTimer() {
     questionStartTime = performance.now();
@@ -25,8 +25,7 @@ function createQuestionTimer() {
   }
 
   async function nextQuestion(currentTime) {
-    timerDuration = getDuration();
-    console.log(timerDuration, getTotalQuestions());
+    timerDuration = getDificultyDuration();
     const duration = Math.min(timerDuration, currentTime / 1000);
     await renderQuestion(duration);
     incrementTotalQuestions();

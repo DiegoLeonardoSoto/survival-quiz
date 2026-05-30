@@ -13,10 +13,11 @@
             rel="stylesheet"
         />
         <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+        <script src="./js/game.js" type="module"></script>
     </head>
     <body class="bg-background bg-grid min-h-screen overflow-hidden">
         <main
-            class="font-agdasima relative w-full md:w-screen mx-auto min-h-screen flex flex-col items-center justify-center overflow-hidden"
+            class="font-agdasima relative w-full md:w-screen mx-auto min-h-screen flex flex-col items-center justify-center overflow-hidden opacity-0 transition-all duration-200"
         >
             <div
                 id="gridBackground"
@@ -103,8 +104,8 @@
                 id="btn-refresh"
                 class="absolute bottom-4 right-4 w-14 h-14 md:w-20 md:h-20 md:bottom-6 md:right-6 bg-transparent flex items-center justify-center rounded-md p-3 mt-2 hidden"
             >
-                <svg class="w-10 h-10 text-white fill-current">
-                    <use href="../assets/sprites.svg#icon-refresh"></use>
+                <svg class="w-14 h-14 text-white fill-current">
+                    <use href="./assets/sprites.svg#icon-refresh"></use>
                 </svg>
 
                 <span
@@ -120,7 +121,5 @@
                 x0
             </div>
         </main>
-
-        <script src="../js/game.js" type="module"></script>
     </body>
 </html>

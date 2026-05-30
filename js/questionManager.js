@@ -7,7 +7,7 @@ function createDificultyCurve(getDificulty, getTotalQuestions) {
   const DURATIONS = [7, 5, 3];
   const DURATIONS_INDEX = { easy: 0, medium: 1, hard: 2 };
 
-  function getDuration() {
+  function getDificultyDuration() {
     const currIndex = DURATIONS_INDEX[getDificulty()] ?? 0;
     const total = getTotalQuestions();
     const progression = total < 10 ? 0 : total < 20 ? 1 : 2;
@@ -17,17 +17,28 @@ function createDificultyCurve(getDificulty, getTotalQuestions) {
   }
 
   return {
-    getDuration,
+    getDificultyDuration,
   };
 }
 
 function questionAnimations() {
+  function answerBlockAnimation(buttonAnwser) {
+    return animate(
+      buttonAnwser,
+      {
+        scale: [1.5, 0.95],
+      },
+      { duration: 0.3, ease: "easeIn", fill: "none" },
+    );
+  }
+
   function answersAnimation() {
     return animate(
       ".btn-answer",
       {
         x: ["-5rem", "0"],
         opacity: [0, 1],
+        scale: [0.95, 1],
       },
       { duration: 0.3, ease: "easeIn", delay: stagger(0.1) },
     );
@@ -58,6 +69,7 @@ function questionAnimations() {
     barAnimation,
     questionAnimation,
     answersAnimation,
+    answerBlockAnimation,
   };
 }
 
@@ -71,7 +83,7 @@ const createQuestionManager = async (
   let difficulty = "easy";
   let currentBarAnimation = null;
 
-  const { getDuration } = createDificultyCurve(
+  const { getDificultyDuration } = createDificultyCurve(
     getDifficulty,
     getTotalQuestions,
   );
@@ -100,8 +112,12 @@ const createQuestionManager = async (
     options: [],
   };
 
-  const { barAnimation, questionAnimation, answersAnimation } =
-    questionAnimations();
+  const {
+    barAnimation,
+    questionAnimation,
+    answersAnimation,
+    answerBlockAnimation,
+  } = questionAnimations();
 
   async function getQuestions() {
     const response = await fetch("../data/questions.json");
@@ -224,8 +240,9 @@ const createQuestionManager = async (
     renderQuestion,
     setDOMReferences,
     getDOMReferences: () => domReferences,
-    getDuration,
+    getDificultyDuration,
     setDifficulty,
+    answerBlockAnimation,
   };
 };
 

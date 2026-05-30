@@ -164,7 +164,6 @@ function createStreakManager(element) {
     isHiding = true;
     currentHiddenAnimation = hiddeAnimation();
     currentHiddenAnimation.then(() => {
-      console.log("termino la animacionde hidden");
       element.classList.add("hidden");
       streak = 0;
       isHiding = false;
