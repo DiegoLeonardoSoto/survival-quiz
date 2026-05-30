@@ -1,10 +1,15 @@
 import { questionManager } from "./questionManager.js";
 
-const { incrementTotalQuestions, renderQuestion } = await questionManager;
+const {
+  incrementTotalQuestions,
+  renderQuestion,
+  getDuration,
+  getTotalQuestions,
+} = await questionManager;
 
 function createQuestionTimer() {
   let questionStartTime = null;
-  const DURATION = 10;
+  let timerDuration = getDuration();
 
   function startQuestionTimer() {
     questionStartTime = performance.now();
@@ -12,7 +17,7 @@ function createQuestionTimer() {
 
   function hasExpiredQuestionTimer() {
     if (questionStartTime === null) return false;
-    return performance.now() - questionStartTime > DURATION * 1000;
+    return performance.now() - questionStartTime > timerDuration * 1000;
   }
 
   function stopQuestionTimer() {
@@ -20,9 +25,11 @@ function createQuestionTimer() {
   }
 
   async function nextQuestion(currentTime) {
-    await renderQuestion(Math.min(DURATION, currentTime / 1000));
+    timerDuration = getDuration();
+    console.log(timerDuration, getTotalQuestions());
+    const duration = Math.min(timerDuration, currentTime / 1000);
+    await renderQuestion(duration);
     incrementTotalQuestions();
-
     startQuestionTimer();
   }
 

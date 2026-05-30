@@ -16,10 +16,11 @@
     </head>
     <body class="bg-background bg-grid min-h-screen overflow-hidden">
         <main
-            class="font-agdasima relative w-full max-w-lg md:max-w-2xl mx-auto min-h-screen flex flex-col items-center justify-center px-4"
+            class="font-agdasima relative w-full md:w-screen mx-auto min-h-screen flex flex-col items-center justify-center overflow-hidden"
         >
             <div
-                class="absolute top-0 right-0 w-full h-full bg-[linear-gradient(to_right,#010a29_1px,transparent_1px),linear-gradient(to_bottom,#010a29_1px,transparent_1px)] bg-size-[70px_70px] mask-linear-0 mask-linear-from-30% mask-linear-to-60% -z-10"
+                id="gridBackground"
+                class="absolute top-0 right-0 w-full h-full bg-[linear-gradient(to_right,#999da9_1px,transparent_.5px),linear-gradient(to_bottom,#999da9_1px,transparent_.5px)] bg-size-[70px_70px] mask-linear-0 mask-linear-from-30% mask-linear-to-60% -z-50"
             ></div>
             <!-- START SCREEN -->
             <h1
@@ -34,21 +35,81 @@
                 id="screen-start"
                 class="flex flex-col items-center gap-6 text-center"
             >
-                <p class="text-xl md:text-2xl">Respondé. Sobreviví. No falles.</p>
-                <a
-                    id="btn-start"
-                    href="./game.html"
-                    class="bg-primary px-6 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center gap-3"
-                >
-                    COMENZAR
+                <p class="text-xl md:text-2xl">
+                    Respondé. Sobreviví. No falles.
+                </p>
 
-                    <svg class="w-6 h-6 text-white fill-current">
-                        <use href="assets/sprites.svg#icon-play"></use>
-                    </svg>
-                </a>
+                <div class="flex flex-col gap-3">
+                    <!-- Fácil -->
+                    <input
+                        type="radio"
+                        id="easy"
+                        name="difficulty"
+                        value="easy"
+                        class="peer/easy hidden"
+                        checked
+                    />
+                    <label
+                        for="easy"
+                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/easy:bg-primary peer-checked/easy:border-primary peer-checked/easy:text-white"
+                    >
+                        Fácil
+                    </label>
+
+                    <!-- Medio -->
+                    <input
+                        type="radio"
+                        id="medium"
+                        name="difficulty"
+                        value="medium"
+                        class="peer/medium hidden"
+                    />
+                    <label
+                        for="medium"
+                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/medium:bg-primary peer-checked/medium:border-primary peer-checked/medium:text-white"
+                    >
+                        Medio
+                    </label>
+
+                    <!-- Difícil -->
+                    <input
+                        type="radio"
+                        id="hard"
+                        name="difficulty"
+                        value="hard"
+                        class="peer/hard hidden"
+                    />
+                    <label
+                        for="hard"
+                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/hard:bg-primary peer-checked/hard:border-primary peer-checked/hard:text-white"
+                    >
+                        Difícil
+                    </label>
+
+                    <button
+                        id="btn-start"
+                        class="bg-secondary px-6 mt-4 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center gap-3"
+                    >
+                        COMENZAR
+
+                        <svg class="w-6 h-6 text-white fill-current">
+                            <use href="assets/sprites.svg#icon-play"></use>
+                        </svg>
+                    </button>
+                </div>
             </section>
         </main>
 
-        <script src="./js/game.js" type="module"></script>
+        <script>
+            const startButton = document.querySelector("#btn-start");
+
+            startButton.addEventListener("click", () => {
+                const difficulty = document.querySelector(
+                    "input[name='difficulty']:checked",
+                ).value;
+                console.log(difficulty);
+                window.location.href = `./game.html?difficulty=${difficulty}`;
+            });
+        </script>
     </body>
 </html>

@@ -1,11 +1,12 @@
+import { questionManager } from "./questionManager.js";
 import { questionTimer } from "./questionTimer.js";
 import { formatTime } from "./utilities.js";
 
 const { stopQuestionTimer, hasExpiredQuestionTimer, nextQuestion } =
   questionTimer;
 
-function createCountDownTimerManager(initTime) {
-  let currentTime = initTime;
+function createCountDownTimerManager() {
+  let currentTime = 0;
   let intervalId;
   let isRunning = false;
 
@@ -58,8 +59,8 @@ function createCountDownTimerManager(initTime) {
     return formatTime(time);
   }
 
-  function resetTimer() {
-    currentTime = initTime;
+  function resetTimer(initDuration) {
+    currentTime = initDuration * 1000;
     stopTimer();
   }
 
@@ -79,4 +80,4 @@ function createCountDownTimerManager(initTime) {
   };
 }
 
-export const countDownTimerManager = createCountDownTimerManager(10000);
+export const countDownTimerManager = createCountDownTimerManager();

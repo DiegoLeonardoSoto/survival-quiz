@@ -1,11 +1,97 @@
-import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
+import {
+  animate,
+  stagger,
+} from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 
-const createQuestionManager = async () => {
+function createDificultyCurve(getDificulty, getTotalQuestions) {
+  const DURATIONS = [7, 5, 3];
+  const DURATIONS_INDEX = { easy: 0, medium: 1, hard: 2 };
+
+  function getDuration() {
+    const currIndex = DURATIONS_INDEX[getDificulty()] ?? 0;
+    const total = getTotalQuestions();
+    const progression = total < 10 ? 0 : total < 20 ? 1 : 2;
+    const index = Math.min(currIndex + progression, DURATIONS.length - 1);
+
+    return DURATIONS[index];
+  }
+
+  return {
+    getDuration,
+  };
+}
+
+function questionAnimations() {
+  function answersAnimation() {
+    return animate(
+      ".btn-answer",
+      {
+        x: ["-5rem", "0"],
+        opacity: [0, 1],
+      },
+      { duration: 0.3, ease: "easeIn", delay: stagger(0.1) },
+    );
+  }
+
+  function questionAnimation() {
+    return animate(
+      "#question",
+      {
+        x: ["-5rem", "0"],
+        opacity: [0, 1],
+        rotate: [-6, 0],
+        scale: [1.5, 1],
+      },
+      { duration: 0.2, ease: "easeIn" },
+    );
+  }
+
+  function barAnimation(currBarDuration) {
+    return animate(
+      "#bar-progress-question",
+      { scaleX: [1, 0] },
+      { duration: currBarDuration, ease: "linear", fill: "none" },
+    );
+  }
+
+  return {
+    barAnimation,
+    questionAnimation,
+    answersAnimation,
+  };
+}
+
+const createQuestionManager = async (
+  questionElement,
+  answersElement,
+  barProgressElement,
+) => {
   let totalCorrectAnswers = 0;
   let totalQuestions = 0;
-  let questionDOMManager = null;
-  let answersDOMManager = null;
-  let barProgressQuestion = null;
+  let difficulty = "easy";
+  let currentBarAnimation = null;
+
+  const { getDuration } = createDificultyCurve(
+    getDifficulty,
+    getTotalQuestions,
+  );
+  let domReferences = {
+    questionDOMReference: questionElement,
+    answersDOMReference: answersElement,
+    barProgressDOMReference: barProgressElement,
+  };
+
+  function setDOMReferences(
+    currQuestionDOMReference,
+    currAnswersDOMReference,
+    currBarProgressDOMReference,
+  ) {
+    domReferences = {
+      questionDOMReference: currQuestionDOMReference,
+      answersDOMReference: currAnswersDOMReference,
+      barProgressDOMReference: currBarProgressDOMReference,
+    };
+  }
 
   const currentQuestion = {
     questionText: "",
@@ -13,6 +99,9 @@ const createQuestionManager = async () => {
     tries: 3,
     options: [],
   };
+
+  const { barAnimation, questionAnimation, answersAnimation } =
+    questionAnimations();
 
   async function getQuestions() {
     const response = await fetch("../data/questions.json");
@@ -22,7 +111,7 @@ const createQuestionManager = async () => {
 
   let questions = await getQuestions();
 
-  const loadQuestion = async () => {
+  const _loadQuestion = async () => {
     const randomIndex = Math.floor(Math.random() * questions.length);
     const question = questions.splice(randomIndex, 1)[0];
     currentQuestion.questionText = question.question;
@@ -38,28 +127,25 @@ const createQuestionManager = async () => {
     }
   };
 
-  let barAnimationInstance = null;
+  const renderQuestion = async (barDuration) => {
+    const { questionDOMReference, answersDOMReference } = domReferences;
 
-  function barAnimation(currDuration) {
-    if (barAnimationInstance) {
-      barAnimationInstance.cancel();
+    await _loadQuestion();
+
+    if (currentBarAnimation) {
+      currentBarAnimation.cancel();
+      currentBarAnimation = null;
     }
 
-    barAnimationInstance = animate(
-      barProgressQuestion,
-      { scaleX: [1, 0] },
-      { duration: currDuration, easing: "linear" },
-    );
+    currentBarAnimation = barAnimation(barDuration);
 
-    return barAnimationInstance;
-  }
+    currentBarAnimation.play();
+    questionAnimation();
+    answersAnimation();
 
-  const renderQuestion = async (duration) => {
-    await loadQuestion();
-    barAnimation(duration).play();
-    questionDOMManager.textContent = currentQuestion.questionText;
+    questionDOMReference.textContent = currentQuestion.questionText;
     const options = [...currentQuestion.options];
-    const buttonsAnswers = [...answersDOMManager.children].filter((e) =>
+    const buttonsAnswers = [...answersDOMReference.children].filter((e) =>
       e.id.includes("answer"),
     );
 
@@ -97,40 +183,54 @@ const createQuestionManager = async () => {
   };
 
   const resetQuestions = () => {
+    const {
+      answersDOMReference,
+      barProgressDOMReference,
+      questionDOMReference,
+    } = domReferences;
+
     totalCorrectAnswers = 0;
     totalQuestions = 0;
-    answersDOMManager.querySelectorAll("button").forEach((btn) => {
+    answersDOMReference.querySelectorAll("button").forEach((btn) => {
       btn.classList.add("hidden");
       btn.disabled = true;
     });
-    barProgressQuestion.style.cssText = "";
+    barProgressDOMReference.style.transform = "scaleX(1)";
+    questionDOMReference.style.cssText = "";
   };
 
-  const setDOMReferences = (
-    currrQuestionDOMManager,
-    currAnswersDOMManager,
-    currBarProgressQuestion,
-  ) => {
-    questionDOMManager = currrQuestionDOMManager;
-    answersDOMManager = currAnswersDOMManager;
-    barProgressQuestion = currBarProgressQuestion;
-  };
+  function getTotalQuestions() {
+    return totalQuestions;
+  }
+
+  function setDifficulty(currDifficulty) {
+    difficulty = currDifficulty;
+  }
+
+  function getDifficulty() {
+    return difficulty;
+  }
 
   return {
     getQuestionText: () => currentQuestion.questionText,
     getQuestionOptions: () => [...currentQuestion.options],
     getTries: () => currentQuestion.tries,
     getTotalCorrectAnswers: () => totalCorrectAnswers,
-    getTotalQuestions: () => totalQuestions,
+    getTotalQuestions,
     incrementTotalQuestions,
     decrementTries,
     validateAnswer,
-    loadQuestion,
     resetQuestions,
     renderQuestion,
     setDOMReferences,
-    getDOMReferences: () => ({ questionDOMManager, answersDOMManager }),
+    getDOMReferences: () => domReferences,
+    getDuration,
+    setDifficulty,
   };
 };
 
-export const questionManager = createQuestionManager();
+export const questionManager = createQuestionManager(
+  document.querySelector("#question"),
+  document.querySelector("#answers"),
+  document.querySelector("#bar-progress-question"),
+);

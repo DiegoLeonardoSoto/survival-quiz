@@ -14,6 +14,8 @@ const {
   resetQuestions,
   setDOMReferences,
   getDOMReferences,
+  setDifficulty,
+  getDuration,
 } = await questionManager;
 
 const { incrementStreak, hiddenStreak, cleanStreak } = streakManager;
@@ -38,8 +40,14 @@ const { startProgressTimer } = progressTimerManager;
 const { nextQuestion } = questionTimer;
 
 let timerDomManager = null;
+let pulseAnimation = null;
 const correctGradientDomManager = document.querySelector("#correctGradient");
 const wrongGradientDomManager = document.querySelector("#wrongGradient");
+
+export function cancelPulse() {
+  pulseAnimation?.cancel();
+  pulseAnimation = null;
+}
 
 export function setupGame() {
   timerDomManager = document.querySelector("#timer");
@@ -50,13 +58,14 @@ export function setupGame() {
     document.querySelector("#bar-progress-question"),
   );
 
-  const { questionDOMManager, answersDOMManager } = getDOMReferences();
+  const { questionDOMReference, answersDOMReference } = getDOMReferences();
 
-  questionDOMManager.textContent =
+  questionDOMReference.textContent =
     " Respondé. Sobreviví. No falles. Estas listo?...";
 
-  animate(
-    questionDOMManager,
+  cancelPulse();
+  pulseAnimation = animate(
+    questionDOMReference,
     {
       color: ["#ffffff", "var(--color-muted)", "#ffffff"],
     },
@@ -67,15 +76,19 @@ export function setupGame() {
     document.querySelector("#btn-play"),
   );
 
-  resetTimer();
+  const params = new URLSearchParams(window.location.search);
+  const difficulty = params.get("difficulty") || "easy";
+  setDifficulty(difficulty);
+
   resetQuestions();
+  resetTimer(getDuration());
   resetRefreshButton();
   cleanStreak();
   resetIntro();
 
   timerDomManager.textContent = getFormatedTime();
 
-  answersDOMManager.addEventListener("click", async (e) => {
+  answersDOMReference.addEventListener("click", async (e) => {
     if (e.target.tagName !== "BUTTON" || !e.target.id.includes("answer"))
       return;
 
