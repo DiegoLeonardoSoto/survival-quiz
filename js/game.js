@@ -3,13 +3,11 @@ import { renderGameOver } from "./renderGameOver.js";
 import { progressTimerManager } from "./progressTimerManager.js";
 import { streakManager } from "./streakManager.js";
 import { refreshManager } from "./refreshManager.js";
-import { setupGame } from "./setupGame.js";
-import { questionTimer } from "./questionTimer.js";
-import { countDownTimerManager } from "./countDownTimerManager.js";
+import { setupGame, cancelPulse } from "./setupGame.js";
 
 const { getTotalCorrectAnswers, getTotalQuestions } = await questionManager;
 
-const { getLongestStreak } = streakManager;
+const { getLongestStreak, hiddenStreak } = streakManager;
 
 const { resetRefreshButton } = refreshManager;
 
@@ -25,6 +23,8 @@ window.addEventListener("timerStop", (e) => {
     survivalTime: getFormatedTime(),
   };
 
+  cancelPulse();
+  hiddenStreak();
   resetProgressTimer();
   resetRefreshButton();
   renderGameOver(gameStats);

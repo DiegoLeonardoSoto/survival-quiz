@@ -57,7 +57,20 @@ export function renderGameOver(gameStats) {
       <svg class="w-6 h-6 text-white fill-current">
           <use href="../assets/sprites.svg#icon-play"></use>
       </svg>
-  </button>`;
+  </button>
+
+  <a
+  href="../index.html"
+  id="btn-retry"
+      class="bg-wrong px-6 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center gap-3 mt-5"
+  >
+  SALIR
+      <svg class="w-6 h-6 text-white fill-current">
+          <use href="../assets/sprites.svg#icon-play"></use>
+      </svg>
+  </a>
+
+  `;
 
   const btnRetry = document.getElementById("btn-retry");
   btnRetry.addEventListener("click", () => {
