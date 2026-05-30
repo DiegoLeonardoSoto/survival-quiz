@@ -9,82 +9,850 @@
   },
   {
     "type": "multiple",
-    "difficulty": "medium",
-    "category": "Ciencia",
-    "question": "¿Cuál es el elemento químico más abundante en el universo?",
-    "correct_answer": "Hidrógeno",
-    "incorrect_answers": ["Helio", "Oxígeno", "Carbono"]
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Australia?",
+    "correct_answer": "Canberra",
+    "incorrect_answers": ["Sídney", "Melbourne", "Perth"]
   },
   {
     "type": "multiple",
     "difficulty": "easy",
-    "category": "Geografía",
-    "question": "¿Cuál es el río más largo del mundo?",
-    "correct_answer": "Amazonas",
-    "incorrect_answers": ["Nilo", "Yangtsé", "Misisipi"]
-  },
-  {
-    "type": "multiple",
-    "difficulty": "medium",
-    "category": "Arte",
-    "question": "¿Quién pintó 'La noche estrellada'?",
-    "correct_answer": "Vincent van Gogh",
-    "incorrect_answers": ["Pablo Picasso", "Claude Monet", "Salvador Dalí"]
+    "category": "Ciencia",
+    "question": "¿Cuál es el planeta más cercano al Sol?",
+    "correct_answer": "Mercurio",
+    "incorrect_answers": ["Venus", "Marte", "Tierra"]
   },
   {
     "type": "multiple",
     "difficulty": "easy",
     "category": "Deportes",
-    "question": "¿Cuántos jugadores tiene un equipo de fútbol en cancha?",
+    "question": "¿Cuántos jugadores tiene un equipo de fútbol en el campo?",
     "correct_answer": "11",
-    "incorrect_answers": ["10", "9", "12"]
+    "incorrect_answers": ["10", "12", "9"]
   },
   {
     "type": "multiple",
-    "difficulty": "hard",
-    "category": "Ciencia",
-    "question": "¿Qué planeta del sistema solar tiene la rotación más rápida?",
-    "correct_answer": "Júpiter",
-    "incorrect_answers": ["Saturno", "Neptuno", "Urano"]
+    "difficulty": "easy",
+    "category": "Arte",
+    "question": "¿Quién pintó la Mona Lisa?",
+    "correct_answer": "Leonardo da Vinci",
+    "incorrect_answers": ["Miguel Ángel", "Rafael", "Donatello"]
   },
   {
     "type": "multiple",
     "difficulty": "medium",
     "category": "Historia",
-    "question": "¿En qué año comenzó la Revolución Francesa?",
-    "correct_answer": "1789",
-    "incorrect_answers": ["1776", "1799", "1804"]
-  },
-  {
-    "type": "multiple",
-    "difficulty": "easy",
-    "category": "Entretenimiento",
-    "question": "¿Cómo se llama el personaje principal de 'Breaking Bad'?",
-    "correct_answer": "Walter White",
-    "incorrect_answers": ["Jesse Pinkman", "Gus Fring", "Saul Goodman"]
+    "question": "¿Quién fue el primer emperador romano?",
+    "correct_answer": "Augusto",
+    "incorrect_answers": ["Julio César", "Nerón", "Trajano"]
   },
   {
     "type": "multiple",
     "difficulty": "medium",
     "category": "Geografía",
-    "question": "¿Cuál es la capital de Australia?",
-    "correct_answer": "Canberra",
-    "incorrect_answers": ["Sídney", "Melbourne", "Brisbane"]
+    "question": "¿Qué río atraviesa París?",
+    "correct_answer": "Sena",
+    "incorrect_answers": ["Loira", "Rin", "Danubio"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es el símbolo químico del oro?",
+    "correct_answer": "Au",
+    "incorrect_answers": ["Ag", "Go", "Or"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Entretenimiento",
+    "question": "¿Quién dirigió la película Titanic?",
+    "correct_answer": "James Cameron",
+    "incorrect_answers": ["Steven Spielberg", "Ridley Scott", "Peter Jackson"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Tecnología",
+    "question": "¿Qué significa CPU?",
+    "correct_answer": "Unidad Central de Procesamiento",
+    "incorrect_answers": [
+      "Control Principal Universal",
+      "Central Program Unit",
+      "Computer Power Unit"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Historia",
+    "question": "¿En qué año comenzó la Guerra de los Treinta Años?",
+    "correct_answer": "1618",
+    "incorrect_answers": ["1608", "1625", "1598"]
   },
   {
     "type": "multiple",
     "difficulty": "hard",
     "category": "Ciencia",
-    "question": "¿Cuál es la velocidad de la luz en el vacío (km/s aproximadamente)?",
-    "correct_answer": "300.000",
-    "incorrect_answers": ["150.000", "450.000", "1.000.000"]
+    "question": "¿Quién formuló las leyes del movimiento planetario?",
+    "correct_answer": "Johannes Kepler",
+    "incorrect_answers": ["Galileo Galilei", "Isaac Newton", "Tycho Brahe"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es el país más grande del mundo?",
+    "correct_answer": "Rusia",
+    "incorrect_answers": ["Canadá", "China", "Estados Unidos"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Deportes",
+    "question": "¿En qué deporte se utiliza una raqueta?",
+    "correct_answer": "Tenis",
+    "incorrect_answers": ["Golf", "Rugby", "Natación"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Arte",
+    "question": "¿Quién compuso La flauta mágica?",
+    "correct_answer": "Mozart",
+    "incorrect_answers": ["Beethoven", "Bach", "Chopin"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Tecnología",
+    "question": "¿Qué empresa desarrolló el sistema operativo Android?",
+    "correct_answer": "Google",
+    "incorrect_answers": ["Microsoft", "Apple", "IBM"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Mongolia?",
+    "correct_answer": "Ulán Bator",
+    "incorrect_answers": ["Astaná", "Taskent", "Biskek"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Historia",
+    "question": "¿Quién lideró la expedición que completó la primera vuelta al mundo?",
+    "correct_answer": "Juan Sebastián Elcano",
+    "incorrect_answers": [
+      "Cristóbal Colón",
+      "Fernando de Magallanes",
+      "Vasco da Gama"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Ciencia",
+    "question": "¿Qué gas respiran los seres humanos para vivir?",
+    "correct_answer": "Oxígeno",
+    "incorrect_answers": ["Hidrógeno", "Nitrógeno", "Helio"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entretenimiento",
+    "question": "¿Cómo se llama el mago protagonista de Harry Potter?",
+    "correct_answer": "Harry Potter",
+    "incorrect_answers": ["Ron Weasley", "Draco Malfoy", "Neville Longbottom"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿Qué muro cayó en 1989?",
+    "correct_answer": "Muro de Berlín",
+    "incorrect_answers": [
+      "Muro de Adriano",
+      "Gran Muralla China",
+      "Muro de Viena"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es el hueso más largo del cuerpo humano?",
+    "correct_answer": "Fémur",
+    "incorrect_answers": ["Tibia", "Radio", "Húmero"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Tecnología",
+    "question": "¿Quién creó el lenguaje de programación C?",
+    "correct_answer": "Dennis Ritchie",
+    "incorrect_answers": [
+      "Bjarne Stroustrup",
+      "James Gosling",
+      "Linus Torvalds"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿En qué continente está Egipto?",
+    "correct_answer": "África",
+    "incorrect_answers": ["Asia", "Europa", "Oceanía"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Arte",
+    "question": "¿Cuántas cuerdas tiene una guitarra clásica?",
+    "correct_answer": "6",
+    "incorrect_answers": ["4", "5", "7"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Deportes",
+    "question": "¿Cuántos sets se necesitan normalmente para ganar un partido de tenis masculino en Grand Slam?",
+    "correct_answer": "3",
+    "incorrect_answers": ["2", "4", "5"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Historia",
+    "question": "¿Quién fue el último zar de Rusia?",
+    "correct_answer": "Nicolás II",
+    "incorrect_answers": ["Alejandro III", "Pedro I", "Iván IV"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Tecnología",
+    "question": "¿Qué navegador desarrolla Mozilla?",
+    "correct_answer": "Firefox",
+    "incorrect_answers": ["Chrome", "Edge", "Safari"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geografía",
+    "question": "¿Cuál es la montaña más alta del mundo?",
+    "correct_answer": "Everest",
+    "incorrect_answers": ["K2", "Aconcagua", "Kilimanjaro"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Cuál es el número atómico del uranio?",
+    "correct_answer": "92",
+    "incorrect_answers": ["88", "90", "94"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entretenimiento",
+    "question": "¿Qué empresa creó Mickey Mouse?",
+    "correct_answer": "Disney",
+    "incorrect_answers": ["Warner Bros.", "Pixar", "Universal"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Arte",
+    "question": "¿Quién escribió Don Quijote de la Mancha?",
+    "correct_answer": "Miguel de Cervantes",
+    "incorrect_answers": ["Lope de Vega", "Quevedo", "Góngora"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Geografía",
+    "question": "¿Cuál es el lago más profundo del mundo?",
+    "correct_answer": "Baikal",
+    "incorrect_answers": ["Victoria", "Superior", "Titicaca"]
   },
   {
     "type": "multiple",
     "difficulty": "easy",
     "category": "Historia",
-    "question": "¿En qué año terminó la Segunda Guerra Mundial?",
-    "correct_answer": "1945",
-    "incorrect_answers": ["1944", "1946", "1943"]
+    "question": "¿Quién descubrió América en 1492?",
+    "correct_answer": "Cristóbal Colón",
+    "incorrect_answers": [
+      "Fernando de Magallanes",
+      "Américo Vespucio",
+      "Vasco da Gama"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Tecnología",
+    "question": "¿Qué significa HTML?",
+    "correct_answer": "HyperText Markup Language",
+    "incorrect_answers": [
+      "HighText Machine Language",
+      "Home Tool Markup Language",
+      "Hyper Tool Main Language"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Arte",
+    "question": "¿Quién pintó Las Meninas?",
+    "correct_answer": "Diego Velázquez",
+    "incorrect_answers": ["Goya", "El Greco", "Murillo"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Ciencia",
+    "question": "¿Cuántos planetas hay en el Sistema Solar?",
+    "correct_answer": "8",
+    "incorrect_answers": ["7", "9", "10"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Deportes",
+    "question": "¿Qué país ganó el Mundial de Fútbol 2010?",
+    "correct_answer": "España",
+    "incorrect_answers": ["Alemania", "Brasil", "Argentina"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Tecnología",
+    "question": "¿Qué protocolo utiliza principalmente la web?",
+    "correct_answer": "HTTP",
+    "incorrect_answers": ["FTP", "SMTP", "SSH"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Japón?",
+    "correct_answer": "Tokio",
+    "incorrect_answers": ["Osaka", "Kioto", "Nagoya"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿Quién fue conocido como el Libertador de América?",
+    "correct_answer": "Simón Bolívar",
+    "incorrect_answers": [
+      "José de San Martín",
+      "Bernardo O'Higgins",
+      "Antonio José de Sucre"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Qué científico propuso la teoría de la relatividad general?",
+    "correct_answer": "Albert Einstein",
+    "incorrect_answers": ["Niels Bohr", "Max Planck", "Erwin Schrödinger"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entretenimiento",
+    "question": "¿Cuál es el nombre del vaquero de Toy Story?",
+    "correct_answer": "Woody",
+    "incorrect_answers": ["Buzz", "Andy", "Rex"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Arte",
+    "question": "¿Quién compuso la Novena Sinfonía?",
+    "correct_answer": "Beethoven",
+    "incorrect_answers": ["Mozart", "Haydn", "Brahms"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Historia",
+    "question": "¿Qué tratado puso fin a la Primera Guerra Mundial?",
+    "correct_answer": "Tratado de Versalles",
+    "incorrect_answers": [
+      "Tratado de Utrecht",
+      "Tratado de Tordesillas",
+      "Tratado de París"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Tecnología",
+    "question": "¿Qué empresa fabrica los iPhone?",
+    "correct_answer": "Apple",
+    "incorrect_answers": ["Samsung", "Google", "Huawei"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geografía",
+    "question": "¿Cuál es el desierto más grande del mundo?",
+    "correct_answer": "Antártico",
+    "incorrect_answers": ["Sahara", "Arabia", "Gobi"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Cuál es la constante aproximada de Avogadro?",
+    "correct_answer": "6.022×10^23",
+    "incorrect_answers": ["3.14×10^8", "9.81×10^2", "1.60×10^-19"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Deportes",
+    "question": "¿Cuántos anillos olímpicos hay en el símbolo olímpico?",
+    "correct_answer": "5",
+    "incorrect_answers": ["4", "6", "7"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Entretenimiento",
+    "question": "¿Quién interpretó a Iron Man en el Universo Cinematográfico de Marvel?",
+    "correct_answer": "Robert Downey Jr.",
+    "incorrect_answers": ["Chris Evans", "Chris Hemsworth", "Mark Ruffalo"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Geografía",
+    "question": "¿Qué país tiene más husos horarios oficiales?",
+    "correct_answer": "Francia",
+    "incorrect_answers": ["Rusia", "Estados Unidos", "China"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Historia",
+    "question": "¿En qué continente se originó la civilización egipcia?",
+    "correct_answer": "África",
+    "incorrect_answers": ["Asia", "Europa", "Oceanía"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿Quién fue el líder de la Unión Soviética durante gran parte de la Segunda Guerra Mundial?",
+    "correct_answer": "Iósif Stalin",
+    "incorrect_answers": ["Lenin", "Nikita Jrushchov", "León Trotski"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Historia",
+    "question": "¿Qué batalla marcó el final definitivo de Napoleón Bonaparte?",
+    "correct_answer": "Waterloo",
+    "incorrect_answers": ["Austerlitz", "Trafalgar", "Leipzig"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Brasil?",
+    "correct_answer": "Brasilia",
+    "incorrect_answers": ["Río de Janeiro", "São Paulo", "Salvador"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geografía",
+    "question": "¿Qué país tiene forma aproximada de bota?",
+    "correct_answer": "Italia",
+    "incorrect_answers": ["Grecia", "Portugal", "Croacia"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Bután?",
+    "correct_answer": "Timbu",
+    "incorrect_answers": ["Katmandú", "Daca", "Vientián"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Ciencia",
+    "question": "¿Qué órgano bombea la sangre por el cuerpo?",
+    "correct_answer": "Corazón",
+    "incorrect_answers": ["Pulmón", "Hígado", "Riñón"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es la velocidad aproximada de la luz en el vacío?",
+    "correct_answer": "300000 km/s",
+    "incorrect_answers": ["30000 km/s", "3000 km/s", "300 km/s"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Qué partícula posee carga negativa?",
+    "correct_answer": "Electrón",
+    "incorrect_answers": ["Protón", "Neutrón", "Positrón"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Deportes",
+    "question": "¿Qué deporte practica Lionel Messi?",
+    "correct_answer": "Fútbol",
+    "incorrect_answers": ["Tenis", "Baloncesto", "Rugby"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Deportes",
+    "question": "¿Cuántos puntos vale un triple en baloncesto?",
+    "correct_answer": "3",
+    "incorrect_answers": ["2", "4", "1"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Deportes",
+    "question": "¿En qué ciudad se celebraron los Juegos Olímpicos de 1992?",
+    "correct_answer": "Barcelona",
+    "incorrect_answers": ["Seúl", "Atlanta", "Sídney"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Tecnología",
+    "question": "¿Qué empresa desarrolló Windows?",
+    "correct_answer": "Microsoft",
+    "incorrect_answers": ["Apple", "Google", "IBM"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Tecnología",
+    "question": "¿Qué significa RAM?",
+    "correct_answer": "Random Access Memory",
+    "incorrect_answers": [
+      "Read Access Memory",
+      "Rapid Access Module",
+      "Random Application Memory"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Tecnología",
+    "question": "¿Qué sistema operativo utiliza el kernel Linux?",
+    "correct_answer": "Linux",
+    "incorrect_answers": ["Windows", "DOS", "CP/M"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Arte",
+    "question": "¿Qué instrumento tiene teclas blancas y negras?",
+    "correct_answer": "Piano",
+    "incorrect_answers": ["Violín", "Flauta", "Trompeta"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Arte",
+    "question": "¿Quién pintó La noche estrellada?",
+    "correct_answer": "Vincent van Gogh",
+    "incorrect_answers": ["Monet", "Picasso", "Dalí"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Arte",
+    "question": "¿A qué movimiento pertenecía Salvador Dalí?",
+    "correct_answer": "Surrealismo",
+    "incorrect_answers": ["Cubismo", "Impresionismo", "Barroco"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entretenimiento",
+    "question": "¿Qué color es Pikachu?",
+    "correct_answer": "Amarillo",
+    "incorrect_answers": ["Azul", "Rojo", "Verde"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Entretenimiento",
+    "question": "¿Quién escribió El Señor de los Anillos?",
+    "correct_answer": "J.R.R. Tolkien",
+    "incorrect_answers": ["C.S. Lewis", "George R.R. Martin", "Terry Pratchett"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Entretenimiento",
+    "question": "¿Qué película ganó el Óscar a Mejor Película en 2020?",
+    "correct_answer": "Parasite",
+    "incorrect_answers": ["1917", "Joker", "Ford v Ferrari"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Historia",
+    "question": "¿Quién fue el primer presidente de Estados Unidos?",
+    "correct_answer": "George Washington",
+    "incorrect_answers": ["Thomas Jefferson", "John Adams", "Abraham Lincoln"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿En qué año comenzó la Segunda Guerra Mundial?",
+    "correct_answer": "1939",
+    "incorrect_answers": ["1937", "1941", "1945"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Historia",
+    "question": "¿Qué emperador romano legalizó el cristianismo con el Edicto de Milán?",
+    "correct_answer": "Constantino I",
+    "incorrect_answers": ["Nerón", "Trajano", "Diocleciano"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Geografía",
+    "question": "¿Cuál es el océano más grande del planeta?",
+    "correct_answer": "Pacífico",
+    "incorrect_answers": ["Atlántico", "Índico", "Ártico"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Geografía",
+    "question": "¿Qué país posee la mayor población del mundo en la actualidad?",
+    "correct_answer": "India",
+    "incorrect_answers": ["China", "Estados Unidos", "Indonesia"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Geografía",
+    "question": "¿Cuál es la capital de Kirguistán?",
+    "correct_answer": "Biskek",
+    "incorrect_answers": ["Taskent", "Dusambé", "Asjabad"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Ciencia",
+    "question": "¿Qué estrella se encuentra en el centro del Sistema Solar?",
+    "correct_answer": "Sol",
+    "incorrect_answers": ["Sirio", "Polaris", "Betelgeuse"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es la fórmula química del agua?",
+    "correct_answer": "H2O",
+    "incorrect_answers": ["CO2", "NaCl", "O2"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Qué científico descubrió la penicilina?",
+    "correct_answer": "Alexander Fleming",
+    "incorrect_answers": ["Louis Pasteur", "Robert Koch", "Gregor Mendel"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Deportes",
+    "question": "¿Con qué se juega al golf?",
+    "correct_answer": "Palos",
+    "incorrect_answers": ["Raquetas", "Bates", "Guantes"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Deportes",
+    "question": "¿Cuántos hoyos tiene una ronda estándar de golf?",
+    "correct_answer": "18",
+    "incorrect_answers": ["9", "12", "24"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Deportes",
+    "question": "¿Qué país ganó el Mundial de Rugby 2019?",
+    "correct_answer": "Sudáfrica",
+    "incorrect_answers": ["Nueva Zelanda", "Inglaterra", "Australia"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Tecnología",
+    "question": "¿Qué red social pertenece a Meta?",
+    "correct_answer": "Instagram",
+    "incorrect_answers": ["TikTok", "X", "Snapchat"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Tecnología",
+    "question": "¿Qué lenguaje se ejecuta principalmente en los navegadores web?",
+    "correct_answer": "JavaScript",
+    "incorrect_answers": ["C++", "Rust", "Go"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Tecnología",
+    "question": "¿Quién creó Linux?",
+    "correct_answer": "Linus Torvalds",
+    "incorrect_answers": ["Richard Stallman", "Bill Gates", "Ken Thompson"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Arte",
+    "question": "¿Qué escritor creó Romeo y Julieta?",
+    "correct_answer": "William Shakespeare",
+    "incorrect_answers": ["Charles Dickens", "Victor Hugo", "Dante Alighieri"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Arte",
+    "question": "¿Qué museo alberga la Mona Lisa?",
+    "correct_answer": "Louvre",
+    "incorrect_answers": ["Prado", "Metropolitan", "Uffizi"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Arte",
+    "question": "¿Quién compuso Las cuatro estaciones?",
+    "correct_answer": "Antonio Vivaldi",
+    "incorrect_answers": ["Bach", "Mozart", "Handel"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Entretenimiento",
+    "question": "¿Cómo se llama la princesa de Frozen?",
+    "correct_answer": "Elsa",
+    "incorrect_answers": ["Ariel", "Bella", "Jasmín"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Entretenimiento",
+    "question": "¿Qué actor interpretó a Jack Sparrow?",
+    "correct_answer": "Johnny Depp",
+    "incorrect_answers": ["Orlando Bloom", "Brad Pitt", "Tom Cruise"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Entretenimiento",
+    "question": "¿Quién dirigió El Padrino?",
+    "correct_answer": "Francis Ford Coppola",
+    "incorrect_answers": [
+      "Martin Scorsese",
+      "Stanley Kubrick",
+      "Steven Spielberg"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Historia",
+    "question": "¿Quién fue conocido como el Libertador de Argentina?",
+    "correct_answer": "José de San Martín",
+    "incorrect_answers": [
+      "Manuel Belgrano",
+      "Simón Bolívar",
+      "Juan Manuel de Rosas"
+    ]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Historia",
+    "question": "¿Qué civilización construyó Machu Picchu?",
+    "correct_answer": "Inca",
+    "incorrect_answers": ["Maya", "Azteca", "Olmeca"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Historia",
+    "question": "¿En qué año ocurrió la Revolución Francesa?",
+    "correct_answer": "1789",
+    "incorrect_answers": ["1776", "1815", "1750"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Ciencia",
+    "question": "¿Qué animal es el mamífero más grande del mundo?",
+    "correct_answer": "Ballena azul",
+    "incorrect_answers": ["Elefante africano", "Cachalote", "Jirafa"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Ciencia",
+    "question": "¿Cuál es el metal líquido a temperatura ambiente?",
+    "correct_answer": "Mercurio",
+    "incorrect_answers": ["Hierro", "Plomo", "Aluminio"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "hard",
+    "category": "Ciencia",
+    "question": "¿Cuál es el elemento químico con símbolo W?",
+    "correct_answer": "Wolframio",
+    "incorrect_answers": ["Westonio", "Wattio", "Wolframita"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "easy",
+    "category": "Tecnología",
+    "question": "¿Qué buscador es el más utilizado del mundo?",
+    "correct_answer": "Google",
+    "incorrect_answers": ["Bing", "Yahoo", "DuckDuckGo"]
+  },
+  {
+    "type": "multiple",
+    "difficulty": "medium",
+    "category": "Tecnología",
+    "question": "¿Qué significa USB?",
+    "correct_answer": "Universal Serial Bus",
+    "incorrect_answers": [
+      "United System Bus",
+      "Universal System Base",
+      "User Serial Bus"
+    ]
   }
 ]
