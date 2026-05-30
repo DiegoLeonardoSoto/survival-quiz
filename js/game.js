@@ -13,15 +13,25 @@ const { resetRefreshButton } = refreshManager;
 
 const { getFormatedTime, resetProgressTimer } = progressTimerManager;
 
-setupGame();
+let gameStats = JSON.parse(sessionStorage.getItem("gameStats")) || null;
+
+if (gameStats) {
+  document.querySelector("main").classList.remove("opacity-0");
+  renderGameOver(gameStats);
+} else {
+  document.querySelector("main").classList.remove("opacity-0");
+  setupGame();
+}
 
 window.addEventListener("timerStop", (e) => {
-  const gameStats = {
+  gameStats = {
     correctAnswers: getTotalCorrectAnswers(),
     totalQuestions: getTotalQuestions(),
     longestStreak: getLongestStreak(),
     survivalTime: getFormatedTime(),
   };
+
+  sessionStorage.setItem("gameStats", JSON.stringify(gameStats));
 
   cancelPulse();
   hiddenStreak();

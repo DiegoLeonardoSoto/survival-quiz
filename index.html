@@ -51,7 +51,7 @@
                     />
                     <label
                         for="easy"
-                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/easy:bg-primary peer-checked/easy:border-primary peer-checked/easy:text-white"
+                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/easy:bg-accent peer-checked/easy:text-secondary"
                     >
                         Fácil
                     </label>
@@ -66,7 +66,7 @@
                     />
                     <label
                         for="medium"
-                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/medium:bg-primary peer-checked/medium:border-primary peer-checked/medium:text-white"
+                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/medium:bg-yellow peer-checked/medium:text-secondary"
                     >
                         Medio
                     </label>
@@ -81,14 +81,14 @@
                     />
                     <label
                         for="hard"
-                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/hard:bg-primary peer-checked/hard:border-primary peer-checked/hard:text-white"
+                        class="flex-1 bg-muted text-white rounded-full p-3 font-bold cursor-pointer text-center transition-all duration-200 peer-checked/hard:bg-wrong peer-checked/hard:text-secondary"
                     >
                         Difícil
                     </label>
 
                     <button
                         id="btn-start"
-                        class="bg-secondary px-6 mt-4 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center gap-3"
+                        class="bg-secondary px-6 mt-4 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center gap-3 hover:bg-primary transitiontransition-all duration-200"
                     >
                         COMENZAR
 
@@ -99,15 +99,17 @@
                 </div>
             </section>
         </main>
-
         <script>
             const startButton = document.querySelector("#btn-start");
 
+            const difficulty = document.querySelector(
+                "input[name='difficulty']:checked",
+            ).value;
+
+            sessionStorage.setItem("difficulty", difficulty);
+
             startButton.addEventListener("click", () => {
-                const difficulty = document.querySelector(
-                    "input[name='difficulty']:checked",
-                ).value;
-                console.log(difficulty);
+                sessionStorage.setItem("difficulty", difficulty);
                 window.location.href = `./game.html?difficulty=${difficulty}`;
             });
         </script>
