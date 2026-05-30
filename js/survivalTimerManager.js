@@ -1,22 +1,28 @@
-import { questionManager } from "./questionManager.js";
+import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 import { questionTimer } from "./questionTimer.js";
 import { formatTime } from "./utilities.js";
 
 const { stopQuestionTimer, hasExpiredQuestionTimer, nextQuestion } =
   questionTimer;
 
-function createCountDownTimerManager() {
+function createSurvivalTimerManager(timerElement = null) {
+  let timerElementRef = timerElement;
   let currentTime = 0;
   let intervalId;
   let isRunning = false;
 
-  function startTimer(timerElement = null) {
+  function setTimerElement(newTimerElement) {
+    timerElementRef = newTimerElement;
+  }
+
+  function startTimer() {
     if (isRunning) return;
     isRunning = true;
 
     intervalId = setInterval(() => {
       reduceTime(10);
-      if (timerElement) timerElement.textContent = getFormatedTime(currentTime);
+      if (timerElementRef)
+        timerElementRef.textContent = getFormatedTime(currentTime);
       if (currentTime <= 0) {
         stopQuestionTimer();
         stopTimer();
@@ -61,6 +67,8 @@ function createCountDownTimerManager() {
 
   function resetTimer(initDuration) {
     currentTime = initDuration * 1000;
+    timerElementRef.textContent = getFormatedTime(currentTime);
+    timerElementRef.style.cssText = "";
     stopTimer();
   }
 
@@ -77,7 +85,10 @@ function createCountDownTimerManager() {
     getFormatedTime,
     resetTimer,
     getCurrentTime,
+    setTimerElement,
   };
 }
 
-export const countDownTimerManager = createCountDownTimerManager();
+export const survivalTimerManager = createSurvivalTimerManager(
+  document.querySelector("#timer"),
+);

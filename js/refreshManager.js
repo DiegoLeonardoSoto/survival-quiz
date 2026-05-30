@@ -1,8 +1,8 @@
 import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
-import { countDownTimerManager } from "./countDownTimerManager.js";
+import { survivalTimerManager } from "./survivalTimerManager.js";
 import { questionTimer } from "./questionTimer.js";
 
-const { getCurrentTime } = countDownTimerManager;
+const { getCurrentTime } = survivalTimerManager;
 const { nextQuestion } = questionTimer;
 
 function refreshAnimations(element, duration) {
@@ -203,7 +203,6 @@ function createRefreshManager(refreshElement) {
     isAnimating = true;
     refreshElement.disabled = true;
     --uses;
-    console.log("uses", uses);
 
     if (hasUses()) {
       decrementAnimation().then(() => {

@@ -4,7 +4,7 @@ import { questionManager } from "./questionManager.js";
 import { streakManager } from "./streakManager.js";
 import { progressTimerManager } from "./progressTimerManager.js";
 import { gameIntroManager } from "./gameIntroManager.js";
-import { countDownTimerManager } from "./countDownTimerManager.js";
+import { survivalTimerManager } from "./survivalTimerManager.js";
 import { questionTimer } from "./questionTimer.js";
 
 const {
@@ -15,7 +15,8 @@ const {
   setDOMReferences,
   getDOMReferences,
   setDifficulty,
-  getDuration,
+  getDificultyDuration,
+  answerBlockAnimation,
 } = await questionManager;
 
 const { incrementStreak, hiddenStreak, cleanStreak } = streakManager;
@@ -30,12 +31,12 @@ const {
 
 const {
   resetTimer,
-  getFormatedTime,
   addTime,
   reduceTime,
   startTimer,
   getCurrentTime,
-} = countDownTimerManager;
+  setTimerElement,
+} = survivalTimerManager;
 const { startProgressTimer } = progressTimerManager;
 const { nextQuestion } = questionTimer;
 
@@ -44,13 +45,78 @@ let pulseAnimation = null;
 const correctGradientDomManager = document.querySelector("#correctGradient");
 const wrongGradientDomManager = document.querySelector("#wrongGradient");
 
+function gameAnimation() {
+  function correctAnswerAnimation() {
+    return animate(
+      "#timer",
+      {
+        scale: [1, 1.3, 1],
+        color: [
+          "var(--color-secondary)",
+          "var(--color-accent)",
+          "var(--color-secondary)",
+        ],
+      },
+      { duration: 0.5 },
+    );
+  }
+
+  function wrongAnswerAnimation() {
+    return animate(
+      "#timer",
+      {
+        x: [0, -12, 12, -8, 8, -4, 4, 0],
+        color: [
+          "var(--color-secondary)",
+          "var(--color-wrong)",
+          "var(--color-secondary)",
+        ],
+      },
+      { duration: 1 },
+    );
+  }
+  function wrongGradientAnimation() {
+    return animate(
+      wrongGradientDomManager,
+      {
+        opacity: [0, 1, 0],
+      },
+      { duration: 0.7, fill: "forwards" },
+    );
+  }
+
+  function correctGradientAnimation() {
+    return animate(
+      correctGradientDomManager,
+      {
+        opacity: [0, 1, 0],
+      },
+      { duration: 0.7, fill: "forwards" },
+    );
+  }
+
+  return {
+    correctAnswerAnimation,
+    wrongAnswerAnimation,
+    correctGradientAnimation,
+    wrongGradientAnimation,
+  };
+}
+
 export function cancelPulse() {
   pulseAnimation?.cancel();
   pulseAnimation = null;
 }
 
+const {
+  correctAnswerAnimation,
+  wrongAnswerAnimation,
+  correctGradientAnimation,
+  wrongGradientAnimation,
+} = gameAnimation();
+
 export function setupGame() {
-  timerDomManager = document.querySelector("#timer");
+  setTimerElement(document.querySelector("#timer"));
 
   setDOMReferences(
     document.querySelector("#question"),
@@ -81,12 +147,10 @@ export function setupGame() {
   setDifficulty(difficulty);
 
   resetQuestions();
-  resetTimer(getDuration());
+  resetTimer(getDificultyDuration());
   resetRefreshButton();
   cleanStreak();
   resetIntro();
-
-  timerDomManager.textContent = getFormatedTime();
 
   answersDOMReference.addEventListener("click", async (e) => {
     if (e.target.tagName !== "BUTTON" || !e.target.id.includes("answer"))
@@ -98,18 +162,15 @@ export function setupGame() {
     if (isCorrect) {
       incrementStreak();
       addTime(5000);
-      correctGradientDomManager.classList.add("opacity-100");
-      setTimeout(() => {
-        correctGradientDomManager.classList.remove("opacity-100");
-      }, 250);
+      correctGradientAnimation();
+      correctAnswerAnimation();
     } else {
       reduceTime(5000);
       e.target.disabled = true;
+      answerBlockAnimation(e.target);
       hiddenStreak();
-      wrongGradientDomManager.classList.add("opacity-100");
-      setTimeout(() => {
-        wrongGradientDomManager.classList.remove("opacity-100");
-      }, 250);
+      wrongGradientAnimation();
+      wrongAnswerAnimation();
 
       if (hasUses()) {
         blockRefreshButton();
