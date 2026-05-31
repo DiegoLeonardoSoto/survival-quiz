@@ -104,7 +104,6 @@ function streakTimer(onExpire, timerAnimation) {
 function createStreakManager(element) {
   let streak = 0;
   let longestStreak = 0;
-  let isHiding = false;
 
   const { hiddeAnimation, showAnimation, updateAnimation, timerAnimation } =
     streakAnimations(element);
@@ -127,7 +126,6 @@ function createStreakManager(element) {
     if (currentHiddenAnimation) {
       currentHiddenAnimation.cancel();
       currentHiddenAnimation = null;
-      isHiding = false;
     }
 
     element.classList.remove("hidden");
@@ -158,19 +156,25 @@ function createStreakManager(element) {
   }
 
   function hiddenStreak() {
-    if (isHiding) return;
-
     cancelTimer();
-    isHiding = true;
+
+    if (currentHiddenAnimation) {
+      currentHiddenAnimation.cancel();
+    }
+
     currentHiddenAnimation = hiddeAnimation();
     currentHiddenAnimation.then(() => {
       element.classList.add("hidden");
       streak = 0;
-      isHiding = false;
+      currentHiddenAnimation = null;
     });
   }
 
   function cleanStreak() {
+    if (currentHiddenAnimation) {
+      currentHiddenAnimation.cancel();
+      currentHiddenAnimation = null;
+    }
     longestStreak = 0;
     streak = 0;
   }
