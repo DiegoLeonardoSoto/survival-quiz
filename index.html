@@ -102,14 +102,12 @@
         <script>
             const startButton = document.querySelector("#btn-start");
 
-            const difficulty = document.querySelector(
-                "input[name='difficulty']:checked",
-            ).value;
-
-            sessionStorage.setItem("difficulty", difficulty);
+            let difficulty;
 
             startButton.addEventListener("click", () => {
-                sessionStorage.setItem("difficulty", difficulty);
+                difficulty = document.querySelector(
+                    "input[name='difficulty']:checked",
+                ).value;
                 window.location.href = `./game.html?difficulty=${difficulty}`;
             });
         </script>

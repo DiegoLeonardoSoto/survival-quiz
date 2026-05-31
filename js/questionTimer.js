@@ -1,11 +1,7 @@
 import { questionManager } from "./questionManager.js";
 
-const {
-  incrementTotalQuestions,
-  renderQuestion,
-  getDificultyDuration,
-  getTotalQuestions,
-} = await questionManager;
+const { incrementTotalQuestions, renderQuestion, getDificultyDuration } =
+  await questionManager;
 
 function createQuestionTimer() {
   let questionStartTime = null;

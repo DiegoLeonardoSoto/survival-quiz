@@ -4,7 +4,7 @@ import {
 } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 
 function createDificultyCurve(getDificulty, getTotalQuestions) {
-  const DURATIONS = [7, 5, 3];
+  const DURATIONS = [10, 7, 5];
   const DURATIONS_INDEX = { easy: 0, medium: 1, hard: 2 };
 
   function getDificultyDuration() {

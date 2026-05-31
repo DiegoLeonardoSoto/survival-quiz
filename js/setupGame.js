@@ -115,6 +115,12 @@ const {
   wrongGradientAnimation,
 } = gameAnimation();
 
+const arrayDifficulty = {
+  easy: { correct: 5000, wrong: 2000 },
+  medium: { correct: 4000, wrong: 4000 },
+  hard: { correct: 2000, wrong: 5000 },
+};
+
 export function setupGame() {
   setTimerElement(document.querySelector("#timer"));
 
@@ -144,8 +150,8 @@ export function setupGame() {
 
   const params = new URLSearchParams(window.location.search);
   const difficulty = params.get("difficulty") || "easy";
-  setDifficulty(difficulty);
 
+  setDifficulty(difficulty);
   resetQuestions();
   resetTimer(getDificultyDuration());
   resetRefreshButton();
@@ -161,11 +167,11 @@ export function setupGame() {
 
     if (isCorrect) {
       incrementStreak();
-      addTime(5000);
+      addTime(arrayDifficulty[difficulty].correct);
       correctGradientAnimation();
       correctAnswerAnimation();
     } else {
-      reduceTime(5000);
+      reduceTime(arrayDifficulty[difficulty].wrong);
       e.target.disabled = true;
       answerBlockAnimation(e.target);
       hiddenStreak();
