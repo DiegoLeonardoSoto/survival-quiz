@@ -40,7 +40,6 @@ const {
 const { startProgressTimer } = progressTimerManager;
 const { nextQuestion } = questionTimer;
 
-let timerDomManager = null;
 let pulseAnimation = null;
 const correctGradientDomManager = document.querySelector("#correctGradient");
 const wrongGradientDomManager = document.querySelector("#wrongGradient");
@@ -195,7 +194,7 @@ export function setupGame() {
     playIntro().then(async () => {
       showRefreshButton();
       await nextQuestion(getCurrentTime());
-      startTimer(timerDomManager);
+      startTimer();
       startProgressTimer();
     });
   });

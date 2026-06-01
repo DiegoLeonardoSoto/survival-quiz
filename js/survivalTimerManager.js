@@ -1,4 +1,3 @@
-import { animate } from "https://cdn.jsdelivr.net/npm/motion@latest/+esm";
 import { questionTimer } from "./questionTimer.js";
 import { formatTime } from "./utilities.js";
 
