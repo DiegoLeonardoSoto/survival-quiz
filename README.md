@@ -6,6 +6,18 @@ Juego de preguntas y respuestas con temporizador de supervivencia. Respondé cor
 
 ---
 
+## 📸 Capturas
+
+<p align="center">
+  <img src="assets/start.png" alt="Pantalla de inicio" width="30%">
+  &nbsp;&nbsp;
+  <img src="assets/game.png" alt="Partida en curso" width="30%">
+  &nbsp;&nbsp;
+  <img src="assets/gameOver.png" alt="Game over" width="30%">
+</p>
+
+---
+
 ## 🧠 ¿Cómo funciona?
 
 - Empezás con un tiempo limitado según la dificultad elegida.
