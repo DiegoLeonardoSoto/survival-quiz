@@ -120,9 +120,18 @@ const createQuestionManager = async (
   } = questionAnimations();
 
   async function getQuestions() {
-    const response = await fetch("../data/questions.json");
-    const data = await response.json();
-    return data;
+    try {
+      const response = await fetch("../data/questions.json");
+      if (!response.ok) {
+        throw new Error(`Error HTTP: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.log("Error al obtener las preguntas", error);
+      throw error;
+    }
   }
 
   let questions = await getQuestions();
