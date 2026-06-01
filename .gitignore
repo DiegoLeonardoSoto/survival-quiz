@@ -1,8 +1,5 @@
 node_modules/
 
-# Build output
-src/output.css
-
 # Env files
 .env
 .env.local

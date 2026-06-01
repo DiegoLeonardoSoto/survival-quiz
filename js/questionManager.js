@@ -121,7 +121,7 @@ const createQuestionManager = async (
 
   async function getQuestions() {
     try {
-      const response = await fetch("../data/questions.json");
+      const response = await fetch("./data/questions.json");
       if (!response.ok) {
         throw new Error(`Error HTTP: ${response.status}`);
       }
