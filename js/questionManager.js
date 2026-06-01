@@ -176,6 +176,8 @@ const createQuestionManager = async (
 
     buttonsAnswers.forEach((button, i) => {
       button.textContent = options[i];
+      button.setAttribute("aria-label", `Opción ${i + 1}: ${options[i]}`);
+      button.setAttribute("aria-disabled", "false");
       button.classList.remove("hidden");
       button.disabled = false;
     });
@@ -219,6 +221,7 @@ const createQuestionManager = async (
     answersDOMReference.querySelectorAll("button").forEach((btn) => {
       btn.classList.add("hidden");
       btn.disabled = true;
+      btn.setAttribute("aria-disabled", "true");
     });
     barProgressDOMReference.style.transform = "scaleX(1)";
     questionDOMReference.style.cssText = "";

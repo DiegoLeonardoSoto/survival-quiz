@@ -40,12 +40,14 @@ export function gameIntroManager(btnPlay) {
     btnPlay.textContent = "Jugar";
     btnPlay.classList.toggle("hidden", false);
     btnPlay.disabled = false;
+    btnPlay.setAttribute("aria-disabled", "false");
     pulseColorAnimation().play();
   }
 
   async function playIntro() {
     pulseColorAnimation().cancel();
     btnPlay.disabled = true;
+    btnPlay.setAttribute("aria-disabled", "true");
     const steps = [3, 2, 1, "YA!"];
 
     for (const step of steps) {

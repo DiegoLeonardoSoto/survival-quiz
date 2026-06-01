@@ -172,6 +172,7 @@ export function setupGame() {
     } else {
       reduceTime(arrayDifficulty[difficulty].wrong);
       e.target.disabled = true;
+      e.target.setAttribute("aria-disabled", "true");
       answerBlockAnimation(e.target);
       hiddenStreak();
       wrongGradientAnimation();

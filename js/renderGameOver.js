@@ -51,20 +51,22 @@ export function renderGameOver(gameStats) {
 
   <div>
 
-  <button
-  id="btn-retry"
-      class="bg-secondary hover:bg-primary transition-all duration-200 px-6 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center gap-3 mt-5"
-  >
+   <button
+   id="btn-retry"
+       class="bg-secondary hover:bg-primary transition-all duration-200 px-6 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center gap-3 mt-5"
+       aria-label="Reintentar partida"
+   >
   <span class="leading-none pb-1 ">REINTENTAR</span>
       <svg class="w-6 h-6 text-white fill-current">
           <use href="./assets/sprites.svg#icon-retry"></use>
       </svg>
   </button>
 
-  <button
-  id="btn-quit"
-      class="bg-secondary hover:bg-wrong w-full transition-all duration-200 px-6 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center justify-center gap-3 mt-5"
-  >
+   <button
+   id="btn-quit"
+       class="bg-secondary hover:bg-wrong w-full transition-all duration-200 px-6 md:px-10 py-3 text-white text-xl md:text-2xl rounded-lg cursor-pointer flex items-center justify-center gap-3 mt-5"
+       aria-label="Salir al menú principal"
+   >
   <span class="leading-none pb-1 ">
       SALIR
   </span>

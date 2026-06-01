@@ -202,6 +202,7 @@ function createRefreshManager(refreshElement) {
 
     isAnimating = true;
     refreshElement.disabled = true;
+    refreshElement.setAttribute("aria-disabled", "true");
     --uses;
 
     if (hasUses()) {
@@ -209,6 +210,7 @@ function createRefreshManager(refreshElement) {
         isAnimating = false;
         _updateBadge();
         refreshElement.disabled = false;
+        refreshElement.setAttribute("aria-disabled", "false");
       });
     } else {
       _disabledRefreshButton();
@@ -245,6 +247,7 @@ function createRefreshManager(refreshElement) {
 
   function _disabledRefreshButton(fromShow = false) {
     refreshElement.disabled = true;
+    refreshElement.setAttribute("aria-disabled", "true");
 
     _updateBadge();
     disabledAnimation(fromShow).play();
@@ -252,6 +255,7 @@ function createRefreshManager(refreshElement) {
 
   function _enableRefreshButton() {
     refreshElement.disabled = false;
+    refreshElement.setAttribute("aria-disabled", "false");
     _updateBadge();
     enabledAnimation().play();
   }
@@ -265,6 +269,7 @@ function createRefreshManager(refreshElement) {
 
     isBlocked = true;
     refreshElement.disabled = true;
+    refreshElement.setAttribute("aria-disabled", "true");
     refreshElement.classList.remove("cursor-pointer");
     _updateBadge();
     blockedAnimation().play();
@@ -275,6 +280,7 @@ function createRefreshManager(refreshElement) {
 
     isBlocked = false;
     refreshElement.disabled = false;
+    refreshElement.setAttribute("aria-disabled", "false");
     refreshElement.classList.add("cursor-pointer");
     _updateBadge();
     enabledAnimation().play();
