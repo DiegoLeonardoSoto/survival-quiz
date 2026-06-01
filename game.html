@@ -15,9 +15,9 @@
         <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
         <script src="./js/game.js" type="module"></script>
     </head>
-    <body class="bg-background bg-grid min-h-screen overflow-hidden">
+    <body class="bg-background bg-grid min-h-dvh overflow-hidden">
         <main
-            class="font-agdasima relative w-full md:w-screen mx-auto min-h-screen flex flex-col items-center justify-center overflow-hidden opacity-0 transition-all duration-200"
+            class="font-agdasima relative w-full md:w-screen mx-auto min-h-dvh flex flex-col items-center justify-center overflow-hidden opacity-0 transition-all duration-200"
         >
             <div
                 id="gridBackground"
@@ -102,7 +102,7 @@
             <button
                 disabled
                 id="btn-refresh"
-                class="absolute bottom-4 right-4 w-14 h-14 md:w-20 md:h-20 md:bottom-6 md:right-6 bg-transparent flex items-center justify-center rounded-md p-3 mt-2 hidden"
+                class="fixed bottom-4 right-4 w-14 h-14 md:w-20 md:h-20 md:bottom-6 md:right-6 bg-transparent flex items-center justify-center rounded-md p-3 mt-2 hidden"
             >
                 <svg class="w-14 h-14 text-white fill-current">
                     <use href="./assets/sprites.svg#icon-refresh"></use>
@@ -116,7 +116,7 @@
 
             <div
                 id="streak"
-                class="origin-center bg-secondary text-white text-2xl md:text-5xl font-bold rounded-xl absolute bottom-5 left-4 md:left-10 px-3 md:px-6 md:py-4 py-2 hidden will-change-transform backface-hidden"
+                class="origin-center bg-secondary text-white text-2xl md:text-5xl font-bold rounded-xl fixed bottom-5 left-4 md:left-10 px-3 md:px-6 md:py-4 py-2 hidden will-change-transform backface-hidden"
             >
                 x0
             </div>
